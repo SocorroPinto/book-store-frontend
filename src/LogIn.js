@@ -6,7 +6,11 @@ class LogIn extends Component {
 		return (
 			<div>
 				<h1>Log In</h1>
-				<form action="/auth/login" method="POST" className="logIn-form">
+				<form
+					action="/auth/login"
+					className="logIn-form"
+					onSubmit={this.props.validateUser}
+				>
 					<label>Username:</label> <input type="text" name="username" />
 					<br />
 					<label>Password:</label> <input type="password" name="password" />

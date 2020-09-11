@@ -16,6 +16,8 @@ class SignUp extends Component {
 					<label>Username:</label>
 					<input type="text" name="username" />
 					<br />
+					<label>email:</label> <input type="text" name="email" />
+					<br />
 					<label>Password:</label> <input type="password" name="password" />
 					<br />
 					<input type="submit" value="SignUp" className="button" />

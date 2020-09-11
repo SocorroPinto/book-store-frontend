@@ -16,8 +16,35 @@ class App extends Component {
 	}
 
 	addUser = (e) => {
-		e.preventDefault();
+		axios
+			.post(`${backendUrl}/auth/signup`, {
+				name: e.target.name.value,
+				username: e.target.username.value,
+				password: e.target.password.value,
+				email: e.target.email.value,
+			})
+			.then((response) => {
+				console.log(response);
+			});
+		console.log(e.target.name.value);
+	};
+	validateUser = (e) => {
+		console.log(e.target.username.value);
+		console.log(e.target.password.value);
+		axios
+			.post(`${backendUrl}/auth/login`, {
+				username: e.target.username.value,
+				password: e.target.password.value,
+			})
+			.then((response) => {
+				console.log(response);
+			});
+	};
+	logOut = (e) => {
 		console.log(e.target.value);
+		axios.get(`${backendUrl}/auth/logout`).then((response) => {
+			console.log(response);
+		});
 	};
 	render() {
 		return (
@@ -46,7 +73,9 @@ class App extends Component {
 							/>
 							<Route
 								path="/auth/login"
-								component={(routerProps) => <LogIn {...routerProps} />}
+								component={(routerProps) => (
+									<LogIn {...routerProps} validateUser={this.validateUser} />
+								)}
 							/>
 							<Route
 								path="/auth/logout"
