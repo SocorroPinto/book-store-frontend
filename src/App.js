@@ -17,7 +17,7 @@ class App extends Component {
 
 	addUser = (e) => {
 		e.preventDefault();
-		console.log(e.target);
+		console.log(e.target.value);
 	};
 	render() {
 		return (
