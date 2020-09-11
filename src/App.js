@@ -1,26 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import { Route, Link, Switch } from "react-router-dom";
+import axios from "axios";
+import SignUp from "./SignUp.js";
+import LogIn from "./LogIn.js";
+import LogOut from "./LogOut.js";
+const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+	constructor(props) {
+		super();
+		this.state = {
+			users: [],
+		};
+	}
+
+	addUser = (e) => {
+		e.preventDefault();
+		console.log(e.target);
+	};
+	render() {
+		return (
+			<div className="App">
+				<div className="App-header">
+					<div className="App-title">
+						<h1>Owl Books Store </h1>
+					</div>
+					<div className="App-account">
+						<Link to="/auth/signup">Sign Up</Link>
+						<Link to="/auth/login">Log In</Link>
+						<Link to="/auth/logout">Log Out</Link>
+					</div>
+					<div id="menuIcons">
+						<Link to="/" id="homePage">
+							<img alt="" id="iconHomePage" src="./img/HomePage.png" />
+						</Link>
+					</div>
+					<main>
+						<Switch>
+							<Route
+								path="/auth/signup"
+								component={(routerProps) => (
+									<SignUp {...routerProps} addUser={this.addUser} />
+								)}
+							/>
+							<Route
+								path="/auth/login"
+								component={(routerProps) => <LogIn {...routerProps} />}
+							/>
+							<Route
+								path="/auth/logout"
+								component={(routerProps) => <LogOut {...routerProps} />}
+							/>
+						</Switch>
+					</main>
+				</div>
+			</div>
+		);
+	}
 }
 
 export default App;
