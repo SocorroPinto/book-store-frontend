@@ -61,7 +61,11 @@ class App extends Component {
 		return (
 			<div className="App">
 				<div className="App-header">
-					<img id="bookStoreimg" alt="" src="./img/owlBookStore.png" />
+					<img
+						id="bookStoreimg"
+						alt=""
+						src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5tb7i_mAKFBLwUyVTwPJb2vpo-FpFCUXBOA&usqp=CAU"
+					/>
 					<div className="App-title">
 						<h1>Owl Books Store </h1>
 					</div>
@@ -78,7 +82,11 @@ class App extends Component {
 					</div>
 					<div id="menuIcons">
 						<Link to="/" id="homePage">
-							<img alt="" className="iconHomePage" src="./img/HomePage.png" />
+							<img
+								alt=""
+								className="iconHomePage"
+								src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS1GxRNkYKmeByOIDdseiLQ2n-VXOylHNjodA&usqp=CAU"
+							/>
 						</Link>
 					</div>
 				</div>
@@ -95,9 +103,17 @@ class App extends Component {
 					</Link>
 					<label>Search:</label>
 					<input className="inputField" type="text" name="search" />
-					<img alt="" src="./img/search.png" className="iconHomePage" />
+					<img
+						alt=""
+						src="https://freeiconshop.com/wp-content/uploads/edd/search-var-flat.png"
+						className="iconHomePage"
+					/>
 					<Link to="/" id="Cart">
-						<img alt="" className="iconHomePage" src="./img/basket.png" />
+						<img
+							alt=""
+							className="iconHomePage"
+							src="https://img.pngio.com/digicollect-cart-icon-png-download-submit-order-icon-cart-icon-png-840_880.png"
+						/>
 					</Link>
 				</div>
 				<main className="mainHomePage">

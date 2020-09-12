@@ -25,7 +25,11 @@ class MostSelled extends Component {
 			return (
 				<div className="books" key={book.id}>
 					<Link to={`/books/${book.id}`}>
-						<img src={`./booksImages/${book.Img}`} alt="" className="book-id" />
+						<img
+							src={`../booksImages/${book.Img}`}
+							alt=""
+							className="book-id"
+						/>
 					</Link>
 					<form>
 						<input type="submit" value="Add book" className="button" />

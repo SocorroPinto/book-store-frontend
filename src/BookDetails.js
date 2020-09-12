@@ -10,11 +10,11 @@ class BookDetails extends Component {
 
 		return (
 			<div className="bookDetail">
+				<img src={`../booksImages/${bookDetail.Img}`} alt="" id="bookImg" />
+
 				<h2>Title: {bookDetail.Title}</h2>
 				<h2>Img: {bookDetail.Img}</h2>
-				<img src={`./booksImages/${bookDetail.Img}`} alt="" />
-				{/* <img src={"./booksImages/AdaptiveCode.png"} alt="" id="bookImg" />
-				<h3>Author: {bookDetail.Author}</h3> */}
+				<h3>Author: {bookDetail.Author}</h3>
 				<h3>Description: {bookDetail.Descriiption}</h3>
 				<h3>Publication year: {bookDetail.PublicationYear}</h3>
 				<h3>Pages: {bookDetail.Pages}</h3>
