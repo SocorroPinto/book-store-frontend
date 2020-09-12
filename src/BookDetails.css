@@ -1,0 +1,12 @@
+.bookDetail {
+	display: flex;
+	flex-flow: row wrap;
+	width: 70%;
+	height: 400px;
+}
+#bookImg {
+	border: 4px solid lime;
+	display: flex;
+	width: 100px;
+	height: 100px;
+}

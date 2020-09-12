@@ -5,16 +5,24 @@ import axios from "axios";
 import SignUp from "./SignUp.js";
 import LogIn from "./LogIn.js";
 import LogOut from "./LogOut.js";
+import Books from "./Books.js";
+import BookDetails from "./BookDetails.js";
 const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
 
 class App extends Component {
 	constructor(props) {
 		super();
 		this.state = {
-			users: [],
+			books: [],
 		};
 	}
-
+	componentDidMount() {
+		axios.get(`${backendUrl}/books`).then((response) => {
+			this.setState({
+				books: response.data.books,
+			});
+		});
+	}
 	addUser = (e) => {
 		axios
 			.post(`${backendUrl}/auth/signup`, {
@@ -50,40 +58,82 @@ class App extends Component {
 		return (
 			<div className="App">
 				<div className="App-header">
+					<img id="bookStoreimg" alt="" src="./img/owlBookStore.png" />
 					<div className="App-title">
 						<h1>Owl Books Store </h1>
 					</div>
 					<div className="App-account">
-						<Link to="/auth/signup">Sign Up</Link>
-						<Link to="/auth/login">Log In</Link>
-						<Link to="/auth/logout">Log Out</Link>
+						<Link className="account-item" to="/auth/signup">
+							Sign Up
+						</Link>
+						<Link className="account-item" to="/auth/login">
+							Log In
+						</Link>
+						<Link className="account-item" to="/auth/logout">
+							Log Out
+						</Link>
 					</div>
 					<div id="menuIcons">
 						<Link to="/" id="homePage">
-							<img alt="" id="iconHomePage" src="./img/HomePage.png" />
+							<img alt="" className="iconHomePage" src="./img/HomePage.png" />
 						</Link>
 					</div>
-					<main>
-						<Switch>
-							<Route
-								path="/auth/signup"
-								component={(routerProps) => (
-									<SignUp {...routerProps} addUser={this.addUser} />
-								)}
-							/>
-							<Route
-								path="/auth/login"
-								component={(routerProps) => (
-									<LogIn {...routerProps} validateUser={this.validateUser} />
-								)}
-							/>
-							<Route
-								path="/auth/logout"
-								component={(routerProps) => <LogOut {...routerProps} />}
-							/>
-						</Switch>
-					</main>
 				</div>
+
+				<div className="App-subheader">
+					<Link to="/" className="subheader-item">
+						All books
+					</Link>
+					<Link to="/" className="subheader-item">
+						Most Selled
+					</Link>
+					<Link to="/" className="subheader-item">
+						Better Rated
+					</Link>
+					<label>Search:</label>
+					<input className="inputField" type="text" name="search" />
+					<img alt="" src="./img/search.png" className="iconHomePage" />
+					<Link to="/" id="Cart">
+						<img alt="" className="iconHomePage" src="./img/basket.png" />
+					</Link>
+				</div>
+				<main className="mainHomePage">
+					<Switch>
+						<Route
+							exact
+							path="/"
+							component={(routerProps) => (
+								<Books {...routerProps} books={this.state.books} />
+							)}
+						/>
+						<Route
+							path="/auth/signup"
+							component={(routerProps) => (
+								<SignUp {...routerProps} addUser={this.addUser} />
+							)}
+						/>
+						<Route
+							path="/auth/login"
+							component={(routerProps) => (
+								<LogIn {...routerProps} validateUser={this.validateUser} />
+							)}
+						/>
+						<Route
+							path="/auth/logout"
+							component={(routerProps) => <LogOut {...routerProps} />}
+						/>
+						<Route
+							path="/books/:id"
+							component={(routerProps) => (
+								<BookDetails {...routerProps} books={this.state.books} />
+							)}
+						/>
+					</Switch>
+				</main>
+				<aside className="asideHomePage"></aside>
+				{/* <footer className="footer">
+					<div>footer</div>
+				</footer> */}
 			</div>
 		);
 	}

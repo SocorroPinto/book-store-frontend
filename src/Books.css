@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Bentham&display=swap&family=Berkshire+Swash&family=Croissant+One&family=Grandstander:wght@600&family=Jacques+Francois+Shadow&family=Margarine&family=Ribeye+Marrow&display=swap");
+
+.book-collection {
+	/* border: 5px solid yellow; */
+	display: flex;
+	width: 1400px;
+	height: 900px;
+	flex-flow: row wrap;
+}
+.books {
+	border: 5px solid pink;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	width: 400px;
+	height: 500px;
+	border-style: groove;
+	border-radius: 15px/10px;
+}
+.book-info {
+	/* border: 10px solid blue; */
+	flex-flow: column wrap;
+	font-family: "Bentham";
+	display: flex;
+	width: 400px;
+	height: 150px;
+}
+.book-id {
+	display: flex;
+	width: 260px;
+	height: 350px;
+}
+.button {
+	display: flex;
+	background-color: pink;
+	width: 80px;
+	height: 30px;
+	border-radius: 10px/5px;
+	font-weight: bolder;
+	justify-content: center;
+}
+.divBook-item {
+	/* border: 5px solid lightblue; */
+	width: 400px;
+	height: 35px;
+	text-align: justify;
+	position: relative;
+	top: 10px;
+	bottom: 15px;
+}
+.book-item {
+	color: black;
+	font-size: 17px;
+	height: 200px;
+	width: 300px;
+}
