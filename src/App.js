@@ -19,7 +19,7 @@ class App extends Component {
 	componentDidMount() {
 		axios.get(`${backendUrl}/books`).then((response) => {
 			this.setState({
-				books: response.data.books,
+				books: response.data.myBooks.books.books,
 			});
 		});
 	}
