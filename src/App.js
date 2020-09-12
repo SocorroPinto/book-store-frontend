@@ -84,11 +84,11 @@ class App extends Component {
 					<Link to="/" className="subheader-item">
 						All books
 					</Link>
-					<Link to="/" className="subheader-item">
+					<Link to="/mostselled" className="subheader-item">
 						Most Selled
 					</Link>
-					<Link to="/" className="subheader-item">
-						Better Rated
+					<Link to="/mostreated" className="subheader-item">
+						Most Rated
 					</Link>
 					<label>Search:</label>
 					<input className="inputField" type="text" name="search" />
@@ -102,6 +102,18 @@ class App extends Component {
 						<Route
 							exact
 							path="/"
+							component={(routerProps) => (
+								<Books {...routerProps} books={this.state.books} />
+							)}
+						/>
+						<Route
+							path="/mostrated"
+							component={(routerProps) => (
+								<Books {...routerProps} books={this.state.books} />
+							)}
+						/>
+						<Route
+							path="/mostselled"
 							component={(routerProps) => (
 								<Books {...routerProps} books={this.state.books} />
 							)}
