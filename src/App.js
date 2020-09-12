@@ -7,6 +7,8 @@ import LogIn from "./LogIn.js";
 import LogOut from "./LogOut.js";
 import Books from "./Books.js";
 import BookDetails from "./BookDetails.js";
+import MostSelled from "./MostSelled.js";
+import MostRated from "./MostRated.js";
 const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
 
 class App extends Component {
@@ -23,6 +25,7 @@ class App extends Component {
 			});
 		});
 	}
+
 	addUser = (e) => {
 		axios
 			.post(`${backendUrl}/auth/signup`, {
@@ -84,10 +87,10 @@ class App extends Component {
 					<Link to="/" className="subheader-item">
 						All books
 					</Link>
-					<Link to="/mostselled" className="subheader-item">
+					<Link to="/books/mostselled" className="subheader-item">
 						Most Selled
 					</Link>
-					<Link to="/mostreated" className="subheader-item">
+					<Link to="/books/mostrated" className="subheader-item">
 						Most Rated
 					</Link>
 					<label>Search:</label>
@@ -107,16 +110,12 @@ class App extends Component {
 							)}
 						/>
 						<Route
-							path="/mostrated"
-							component={(routerProps) => (
-								<Books {...routerProps} books={this.state.books} />
-							)}
+							path="/books/mostrated"
+							component={(routerProps) => <MostRated {...routerProps} />}
 						/>
 						<Route
-							path="/mostselled"
-							component={(routerProps) => (
-								<Books {...routerProps} books={this.state.books} />
-							)}
+							path="/books/mostselled"
+							component={(routerProps) => <MostSelled {...routerProps} />}
 						/>
 						<Route
 							path="/auth/signup"

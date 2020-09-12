@@ -5,7 +5,7 @@ class SignUp extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Sign Up</h1>
+				<h2>Sign Up</h2>
 				<form
 					className="signUp-form"
 					action="/auth/signup"
