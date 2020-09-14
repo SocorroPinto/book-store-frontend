@@ -13,17 +13,17 @@
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
-} 
+}
 
 .fakeAdvertising {
 	width: 18%;
 	display: flex;
 	flex-wrap: wrap;
-	flex-direction: column;	
+	flex-direction: column;
 }
 
 .books {
-	flex: 1 0 33.33%; 
+	flex: 1 0 33.33%;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	max-width: 320px;
 	max-height: 600px;
@@ -49,7 +49,7 @@
 .books .book-info {
 	display: flex;
 	flex-flow: column wrap;
-} 
+}
 
 .books .book-title {
 	text-align: left;
@@ -74,9 +74,9 @@
 	padding: 12px;
 	color: white;
 	background-color: #000;
-	text-align: center; 
+	text-align: center;
 	cursor: pointer;
-	width: 100%;  
+	width: 100%;
 	font-size: 18px;
 	height: 50px;
 }
@@ -84,4 +84,3 @@
 .books .button:hover {
 	opacity: 0.7;
 }
-

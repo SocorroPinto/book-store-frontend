@@ -5,7 +5,7 @@ class BookDetails extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			book: null
+			book: null,
 		};
 	}
 
@@ -13,9 +13,8 @@ class BookDetails extends Component {
 	// 	const bookDetail = this.props.books.find((book) => {
 	// 		return book.id == this.props.match.params.id;
 	// 	});
-	// 	console.log({ bookDetail });		
+	// 	console.log({ bookDetail });
 	// }
-
 
 	render() {
 		const bookDetail = this.props.books.find((book) => {
@@ -36,7 +35,7 @@ class BookDetails extends Component {
 				<h3>Price: {bookDetail.Cost}</h3>
 				<h3>Summary: {bookDetail.Summary}</h3>
 				<h3>Rating: {bookDetail.Rating}</h3>
-				<h3>Language: {bookDetail.Language}</h3> 
+				<h3>Language: {bookDetail.Language}</h3>
 			</div>
 		);
 	}
