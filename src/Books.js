@@ -50,7 +50,6 @@ class Books extends Component {
 						<div><Link>{'<<<'} Prev</Link></div>
 						<div><Link>Next{'>>>'}</Link></div>
 					</div>
-					</div>
 					<div className="fakeAdvertising">
 						{/* <FakeAd/>
                         <FakePromo/>
@@ -58,13 +57,6 @@ class Books extends Component {
                         <FakePromo/>
                         <FakeAd/> */}
 					</div>
-				</div>
-				<div className="fakeAdvertising">
-					<FakeAd />
-					<FakePromo />
-					<FakeAd />
-					<FakePromo />
-					<FakeAd />
 				</div>
 			</div>
 		);
