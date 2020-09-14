@@ -25,7 +25,7 @@ class Books extends Component {
 						<div className="book-price">
 							<h4>Price: ${book.Cost}</h4>
 						</div>
-						<div className='book-description'>{book.Description}</div>
+						{/* <div className='book-description'>{book.Description}</div> */}
 						<div className="book-rating">
 							<h5>Raiting</h5>
 							<span className="fa fa-star checked"></span>
@@ -50,11 +50,11 @@ class Books extends Component {
 					</div>
 					</div>
 					<div className="fakeAdvertising">
-						<FakeAd/>
+						{/* <FakeAd/>
                         <FakePromo/>
                         <FakeAd/>
                         <FakePromo/>
-                        <FakeAd/>
+                        <FakeAd/> */}
 					</div>
 				</div>) ;
 	}

@@ -20,7 +20,6 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-
 		let myPath = window.location.pathname;
 
 		if ( myPath == '/books/mostselled') {
@@ -42,6 +41,10 @@ class App extends Component {
 				});
 			});
 		}
+	}
+
+	componentDidUpdate = () => {
+		this.componentDidMount();
 	}
 
 	addUser = (e) => {
