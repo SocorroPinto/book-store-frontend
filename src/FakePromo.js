@@ -40,7 +40,6 @@ class FakePromo extends Component {
     }
     
     componentDidMount = () => {
-        clearInterval(this.timer);
         this.imageChanger();
     }
 

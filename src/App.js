@@ -11,41 +11,37 @@ const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
 
 class App extends Component {
 	constructor(props) {
-		super(props);
-		this.state = {
-			books: [],
-			limit: 6,
-			offset: 0
-		};
+		super();
+
 	}
 
-	componentDidMount() {
-		let myPath = window.location.pathname;
+	// componentDidMount() {
+	// 	let myPath = window.location.pathname;
 
-		if ( myPath == '/books/mostselled') {
-			axios.get(`${backendUrl}/books/mostselled?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
-				this.setState({
-					books: response.data.myBooks.books.books,
-				});
-			});
-		} else if ( myPath == '/books/mostrated') {
-			axios.get(`${backendUrl}/books/mostrated?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
-				this.setState({
-					books: response.data.myBooks.books.books,
-				});
-			});
-		} else {
-			axios.get(`${backendUrl}/books?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
-				this.setState({
-					books: response.data.myBooks.books.books,
-				});
-			});
-		}
-	}
+	// 	if ( myPath == '/books/mostselled') {
+	// 		axios.get(`${backendUrl}/books/mostselled?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
+	// 			this.setState({
+	// 				books: response.data.myBooks.books.books,
+	// 			});
+	// 		});
+	// 	} else if ( myPath == '/books/mostrated') {
+	// 		axios.get(`${backendUrl}/books/mostrated?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
+	// 			this.setState({
+	// 				books: response.data.myBooks.books.books,
+	// 			});
+	// 		});
+	// 	} else {
+	// 		axios.get(`${backendUrl}/books?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
+	// 			this.setState({
+	// 				books: response.data.myBooks.books.books,
+	// 			});
+	// 		});
+	// 	}
+	// }
 
-	componentDidUpdate = () => {
-		this.componentDidMount();
-	}
+	// componentDidUpdate = () => {
+	//  	this.componentDidMount();
+	// }
 
 	addUser = (e) => {
 		axios
@@ -141,16 +137,16 @@ class App extends Component {
 							exact
 							path="/"
 							component={(routerProps) => (
-								<Books {...routerProps} books={this.state.books} />
+								<Books {...routerProps}  />
 							)}
 						/>
 						<Route
 							path="/books/mostrated"
-							component={(routerProps) => <Books {...routerProps}  books={this.state.books} />}
+							component={(routerProps) => <Books {...routerProps}  />}
 						/>
 						<Route
 							path="/books/mostselled"
-							component={(routerProps) => <Books {...routerProps}  books={this.state.books} />}
+							component={(routerProps) => <Books {...routerProps}  />}
 						/>
 						<Route
 							path="/auth/signup"

@@ -31,7 +31,6 @@ class FakeAd extends Component {
     }
 
     componentDidMount = () => {
-        clearInterval(this.timer);
         this.gifChanger();
     }
 

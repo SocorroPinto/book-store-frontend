@@ -4,9 +4,45 @@ import "./Books.css";
 import FakePromo from "./FakePromo";
 import FakeAd from "./FakeAd";
 
+import axios from "axios";
+const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
+
 class Books extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			books: [],
+			limit: 6,
+			offset: 0
+		};
+	}
+
+	componentDidMount() {
+		let myPath = this.props.location.pathname;
+
+		if ( myPath == '/books/mostselled') {
+			axios.get(`${backendUrl}/books/mostselled?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
+				this.setState({
+					books: response.data.myBooks.books.books,
+				});
+			});
+		} else if ( myPath == '/books/mostrated') {
+			axios.get(`${backendUrl}/books/mostrated?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
+				this.setState({
+					books: response.data.myBooks.books.books,
+				});
+			});
+		} else {
+			axios.get(`${backendUrl}/books?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
+				this.setState({
+					books: response.data.myBooks.books.books,
+				});
+			});
+		}
+	}
+
 	render() {
-		const allBooks = this.props.books.map((book, index) => {
+		const allBooks = this.state.books.map((book, index) => {
 			return (
 				<div className="books" key={book.id}>
 					<Link to={`/books/${book.id}`}>
@@ -49,14 +85,14 @@ class Books extends Component {
 					<div className="book-pagination">
 						<div><Link>{'<<<'} Prev</Link></div>
 						<div><Link>Next{'>>>'}</Link></div>
-					</div>
-					<div className="fakeAdvertising">
-						{/* <FakeAd/>
-                        <FakePromo/>
-                        <FakeAd/>
-                        <FakePromo/>
-                        <FakeAd/> */}
-					</div>
+					</div> 
+				</div>
+				<div className="fakeAdvertising">
+					<FakeAd/>
+                    <FakePromo/>
+                    <FakeAd/>
+                    <FakePromo/>
+                    <FakeAd/> 
 				</div>
 			</div>
 		);
