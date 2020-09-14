@@ -1,57 +1,86 @@
-@import url("https://fonts.googleapis.com/css2?family=Bentham&display=swap&family=Berkshire+Swash&family=Croissant+One&family=Grandstander:wght@100&display=swap&display=swap&family=Raleway:wght@100&family=Jacques+Francois+Shadow&family=Margarine&family=Ribeye+Marrow&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bentham&display=swap&family=Berkshire+Swash&family=Croissant+One&family=Grandstander:wght@600&family=Jacques+Francois+Shadow&family=Margarine&family=Ribeye+Marrow&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.book-container {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: flex-start;
+}
 
 .book-collection {
-	/* border: 5px solid yellow; */
+	width: 80%;
 	display: flex;
-	width: 1300px;
-	height: 900px;
-	flex-flow: row wrap;
+	flex-wrap: wrap;
+	flex-direction: row;
 }
+
+.fakeAdvertising {
+	width: 18%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
+
 .books {
-	border: 5px solid pink;
-	display: flex;
-	flex-flow: column nowrap;
-	align-items: center;
-	width: 310px;
-	height: 400px;
-	border-style: groove;
-	border-radius: 15px/10px;
+	flex: 1 0 33.33%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	max-width: 320px;
+	max-height: 600px;
+	margin: auto;
+	text-align: center;
+	font-family: arial;
 }
-.book-info {
-	/* border: 10px solid blue; */
+
+.book-pagination {
+	display: flex;
+	flex-direction: row;
+	align-content: space-between;
+}
+
+.checked {
+	color: orange;
+}
+
+.book-price {
+	font-size: 22px;
+}
+
+.books .book-info {
+	display: flex;
 	flex-flow: column wrap;
-	font-family: "Raleway";
-	display: flex;
-	width: 300px;
-	height: 150px;
 }
-.book-id {
-	display: flex;
-	width: 180px;
-	height: 270px;
-}
-.button {
-	display: flex;
-	background-color: pink;
-	width: 80px;
-	height: 30px;
-	border-radius: 10px/5px;
-	font-weight: bolder;
-	justify-content: center;
-}
-.divBook-item {
-	/* border: 5px solid lightblue; */
-	width: 400px;
-	height: 35px;
-	text-align: justify;
-	/* position: relative;
-	/* top: 10px; */
-	/* bottom: 10px; */
-}
-.book-item {
-	color: black;
+
+.books .book-title {
+	text-align: left;
 	font-size: 14px;
-	height: 200px;
-	width: 300px;
-	font-weight: none;
+	font-weight: bold;
+}
+
+.books .book-description {
+	font-size: 10px;
+	text-align: justify;
+	padding: 3px;
+}
+
+.books .book-id {
+	max-width: 200px;
+	max-height: 280px;
+}
+
+.books .button {
+	border: none;
+	outline: 0;
+	padding: 12px;
+	color: white;
+	background-color: #000;
+	text-align: center;
+	cursor: pointer;
+	width: 100%;
+	font-size: 18px;
+	height: 50px;
+}
+
+.books .button:hover {
+	opacity: 0.7;
 }
