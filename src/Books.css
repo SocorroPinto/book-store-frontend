@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Bentham&display=swap&family=Berkshire+Swash&family=Croissant+One&family=Grandstander:wght@600&family=Jacques+Francois+Shadow&family=Margarine&family=Ribeye+Marrow&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bentham&display=swap&family=Berkshire+Swash&family=Croissant+One&family=Grandstander:wght@100&display=swap&display=swap&family=Raleway:wght@100&family=Jacques+Francois+Shadow&family=Margarine&family=Ribeye+Marrow&display=swap");
 
 .book-collection {
 	/* border: 5px solid yellow; */
 	display: flex;
-	width: 1400px;
+	width: 1300px;
 	height: 900px;
 	flex-flow: row wrap;
 }
@@ -12,23 +12,23 @@
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
-	width: 400px;
-	height: 500px;
+	width: 310px;
+	height: 400px;
 	border-style: groove;
 	border-radius: 15px/10px;
 }
 .book-info {
 	/* border: 10px solid blue; */
 	flex-flow: column wrap;
-	font-family: "Bentham";
+	font-family: "Raleway";
 	display: flex;
-	width: 400px;
+	width: 300px;
 	height: 150px;
 }
 .book-id {
 	display: flex;
-	width: 260px;
-	height: 350px;
+	width: 180px;
+	height: 270px;
 }
 .button {
 	display: flex;
@@ -44,13 +44,14 @@
 	width: 400px;
 	height: 35px;
 	text-align: justify;
-	position: relative;
-	top: 10px;
-	bottom: 15px;
+	/* position: relative;
+	/* top: 10px; */
+	/* bottom: 10px; */
 }
 .book-item {
 	color: black;
-	font-size: 17px;
+	font-size: 14px;
 	height: 200px;
 	width: 300px;
+	font-weight: none;
 }

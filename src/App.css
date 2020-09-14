@@ -47,7 +47,6 @@
 	display: flex;
 	width: 30%;
 	height: 90px;
-	color: white;
 	font-size: 18px;
 	font-family: "Croissant One";
 	color: #bccad6;
@@ -77,11 +76,11 @@
 	display: flex;
 	align-content: center;
 	position: relative;
-	top: -8px;
+	top: -4px;
 	left: 10px;
-	height: 50px;
-	width: 65px;
-	border-radius: 70px/70px;
+	height: 45px;
+	width: 45px;
+	border-radius: 25px/25px;
 	border-style: unset;
 }
 .App-subheader {
@@ -91,13 +90,12 @@
 	display: flex;
 	flex-direction: row;
 	width: 100%;
-	justify-content: space-between;
+	justify-content: space-around;
 	height: 60px;
-	align-items: flex-start;
-	justify-content: flex-start;
+	/* align-items: flex-start;
+	justify-content: flex-start;*/
 	align-content: center;
 	font-size: 22px;
-	/* font-size: calc(15px + 2); */
 	color: #8d9db6;
 	flex-flow: row wrap;
 	font-family: "Croissant One";
@@ -122,11 +120,20 @@ a {
 	text-decoration: none;
 	color: #8d9db6;
 }
-.mainHomePage {
-	display: flex;
-	width: 90%;
-	height: 400px;
+a:hover {
+	font-size: 20px;
+	color: #667292;
 }
+.mainHomePage {
+	/* border: 5px solid lime; */
+	display: flex;
+	position: relative;
+	top: 20px;
+	left: 200px;
+	width: 60%;
+	height: 800px;
+}
+
 .asideHomePage {
 	display: flex;
 	width: 10%;

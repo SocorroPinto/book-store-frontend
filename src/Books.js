@@ -15,10 +15,12 @@ class Books extends Component {
 					</form>
 					<div className="book-info">
 						<div className="divBook-item">
-							<h3 className="book-item">Title: {book.Title}</h3>
+							<h3 className="book-item">
+								<label>Title:</label> {book.Title}
+							</h3>
 						</div>
 						<div className="divBook-item">
-							<h3 className="book-item">Cost: {book.Cost}</h3>
+							<h3 className="book-item">Cost: ${book.Cost}</h3>
 						</div>
 						<div className="divBook-item">
 							<h3 className="book-item">Rating: {book.Rating}</h3>
