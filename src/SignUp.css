@@ -4,8 +4,6 @@
 	display: flex;
 	flex-flow: column wrap;
 	position: relative;
-	top: 200px;
-	left: -500px;
 	font-size: 20px;
 	color: black;
 }
