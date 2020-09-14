@@ -1,0 +1,33 @@
+.coupon {
+  border: 1px dotted #bbb;
+  width: 80%;
+  margin: 0 auto;
+  max-width: 250px;
+  margin: 12px;
+}
+
+.container {
+  padding: 2px 16px;
+  background-color: #f1f1f1;
+}
+
+.container p {
+  font-size: 12px;
+}
+
+.blanco {
+  background-color: white;
+}
+
+.iCoupon {
+  width: 100%;
+}
+
+.promo {
+  background: #ccc;
+  padding: 3px;
+}
+
+.expire {
+  color: red;
+}

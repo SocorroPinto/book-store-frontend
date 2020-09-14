@@ -7,23 +7,41 @@ import LogIn from "./LogIn.js";
 import LogOut from "./LogOut.js";
 import Books from "./Books.js";
 import BookDetails from "./BookDetails.js";
-import MostSelled from "./MostSelled.js";
-import MostRated from "./MostRated.js";
 const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
 
 class App extends Component {
 	constructor(props) {
-		super();
+		super(props);
 		this.state = {
 			books: [],
+			limit: 6,
+			offset: 0
 		};
 	}
+
 	componentDidMount() {
-		axios.get(`${backendUrl}/books`).then((response) => {
-			this.setState({
-				books: response.data.myBooks.books.books,
+
+		let myPath = window.location.pathname;
+
+		if ( myPath == '/books/mostselled') {
+			axios.get(`${backendUrl}/books/mostselled?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
+				this.setState({
+					books: response.data.myBooks.books.books,
+				});
 			});
-		});
+		} else if ( myPath == '/books/mostrated') {
+			axios.get(`${backendUrl}/books/mostrated?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
+				this.setState({
+					books: response.data.myBooks.books.books,
+				});
+			});
+		} else {
+			axios.get(`${backendUrl}/books?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
+				this.setState({
+					books: response.data.myBooks.books.books,
+				});
+			});
+		}
 	}
 
 	addUser = (e) => {
@@ -39,6 +57,7 @@ class App extends Component {
 			});
 		console.log(e.target.name.value);
 	};
+
 	validateUser = (e) => {
 		console.log(e.target.username.value);
 		console.log(e.target.password.value);
@@ -60,13 +79,16 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
+				<header>
 				<div className="App-header">
-					<img
-						id="bookStoreimg"
-						alt=""
-						src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ5tb7i_mAKFBLwUyVTwPJb2vpo-FpFCUXBOA&usqp=CAU"
-					/>
 					<div className="App-title">
+						<Link to="/" id="homePage">
+							<img
+								id="bookStoreimg"
+								alt=""
+								src="../img/OwlBookS.png"
+							/>
+						</Link>
 						<h1>Owl Books Store </h1>
 					</div>
 					<div className="App-account">
@@ -80,34 +102,9 @@ class App extends Component {
 							Log Out
 						</Link>
 					</div>
-					<div id="menuIcons">
-						<Link to="/" id="homePage">
-							<img
-								alt=""
-								className="iconHomePage"
-								src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS1GxRNkYKmeByOIDdseiLQ2n-VXOylHNjodA&usqp=CAU"
-							/>
-						</Link>
-					</div>
 				</div>
 
 				<div className="App-subheader">
-					<Link to="/" className="subheader-item">
-						All books
-					</Link>
-					<Link to="/books/mostselled" className="subheader-item">
-						Most Selled
-					</Link>
-					<Link to="/books/mostrated" className="subheader-item">
-						Most Rated
-					</Link>
-					<label>Search:</label>
-					<input className="inputField" type="text" name="search" />
-					<img
-						alt=""
-						src="https://freeiconshop.com/wp-content/uploads/edd/search-var-flat.png"
-						className="iconHomePage"
-					/>
 					<Link to="/" id="Cart">
 						<img
 							alt=""
@@ -115,7 +112,26 @@ class App extends Component {
 							src="https://img.pngio.com/digicollect-cart-icon-png-download-submit-order-icon-cart-icon-png-840_880.png"
 						/>
 					</Link>
-				</div>
+					<Link to="/" >
+						All books
+					</Link>
+					<Link to="/books/mostselled">
+						Most Selled
+					</Link>
+					<Link to="/books/mostrated" >
+						Most Rated
+					</Link>
+					<div className="searchingBooks">
+						<label className="subheader-item" >Search:</label>
+						<input className="inputField" type="text" name="search" />
+						<img id="searchImage"
+							alt=""
+							src="https://freeiconshop.com/wp-content/uploads/edd/search-var-flat.png"
+							className="iconHomePage"
+						/>
+					</div>
+				</div> 
+				</header>
 				<main className="mainHomePage">
 					<Switch>
 						<Route
@@ -127,11 +143,11 @@ class App extends Component {
 						/>
 						<Route
 							path="/books/mostrated"
-							component={(routerProps) => <MostRated {...routerProps} />}
+							component={(routerProps) => <Books {...routerProps}  books={this.state.books} />}
 						/>
 						<Route
 							path="/books/mostselled"
-							component={(routerProps) => <MostSelled {...routerProps} />}
+							component={(routerProps) => <Books {...routerProps}  books={this.state.books} />}
 						/>
 						<Route
 							path="/auth/signup"
@@ -156,8 +172,8 @@ class App extends Component {
 							)}
 						/>
 					</Switch>
-				</main>
-				<aside className="asideHomePage"></aside>
+				</main> 
+				{/* <aside className="asideHomePage"></aside> */}
 				{/* <footer className="footer">
 					<div>footer</div>
 				</footer> */}

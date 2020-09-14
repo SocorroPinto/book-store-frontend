@@ -2,6 +2,21 @@ import React, { Component } from "react";
 import "./BookDetails.css";
 
 class BookDetails extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			book: null
+		};
+	}
+
+	// componentDidMount() {
+	// 	const bookDetail = this.props.books.find((book) => {
+	// 		return book.id == this.props.match.params.id;
+	// 	});
+	// 	console.log({ bookDetail });		
+	// }
+
+
 	render() {
 		const bookDetail = this.props.books.find((book) => {
 			return book.id == this.props.match.params.id;
@@ -21,7 +36,7 @@ class BookDetails extends Component {
 				<h3>Price: {bookDetail.Cost}</h3>
 				<h3>Summary: {bookDetail.Summary}</h3>
 				<h3>Rating: {bookDetail.Rating}</h3>
-				<h3>Language: {bookDetail.Language}</h3>
+				<h3>Language: {bookDetail.Language}</h3> 
 			</div>
 		);
 	}
