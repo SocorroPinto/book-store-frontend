@@ -6,7 +6,6 @@ import "./Cart.css";
 // import FakeAd from "./FakeAd";
 
 import axios from "axios";
-import Books from "./Books";
 const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
 
 class Cart extends Component {
@@ -17,6 +16,19 @@ class Cart extends Component {
             currentUser: AuthService.getCurrentUser(),
             cart: null
         }
+    }
+
+    calcTotal = (pCart) => {
+        let myTotal = 0;
+
+        pCart.forEach((cart) => {
+            cart.CartDetails.forEach((detail) => {
+                detail.Books.forEach((book) => {
+                    myTotal += detail.Quantity * book.Cost;
+                });
+            });
+        });  
+        return myTotal;   
     }
 
     componentDidMount() {
@@ -31,6 +43,37 @@ class Cart extends Component {
             });
         }
     }
+
+    handleAddBook = (e, indexDetail) => {
+        e.preventDefault();
+        let myCart = [...this.state.cart];
+
+        myCart[0].CartDetails[indexDetail].Quantity += 1;
+        myCart[0].Total = this.calcTotal(myCart);
+
+        this.setState({
+            cart: myCart
+        });
+    }
+
+    handleDelBook = (e, indexDetail) => {
+        e.preventDefault();
+        let myCart = [...this.state.cart];
+
+        if ( myCart[0].CartDetails[indexDetail].Quantity > 1 ) {
+            myCart[0].CartDetails[indexDetail].Quantity -= 1;
+        } else {
+            myCart[0].CartDetails.splice(indexDetail, 1);
+        }
+        console.log(indexDetail);
+        console.log(myCart)
+        
+        myCart[0].Total = this.calcTotal(myCart);
+
+        this.setState({
+            cart: myCart
+        });
+    }
    
 	render() {
         const currentUser = this.state.currentUser;
@@ -40,18 +83,22 @@ class Cart extends Component {
 
         if (currentCart) {
             infoCart = currentCart.map((cart) => {
-                const cartDetails = cart.CartDetails.map((detail) => {
+                const cartDetails = cart.CartDetails.map((detail, dIndex) => {
                     const bookDet = detail.Books.map((book) => {
                         return(<div key={book.id} className="book-det">
                                     <div className="book-det-item">{book.id}{".-  "}</div>
                                     <img className="book-det-item cartImage" 
                                          src={`../booksImages/${book.Img}`} 
-                                         alt="Boook Image"></img>
+                                         alt="Boook"></img>
                                     <div className="book-det-item book-title-cart"><strong>{book.Title}</strong></div>
                                     <div className="book-det-item"><strong>{"Qty: "}</strong>{detail.Quantity}</div>
                                     <div className="book-det-item"><strong>{"Price: $"}</strong>{book.Cost}</div>
-                                    <div className="book-det-item"><button className="btn"><i className="fa fa-plus"></i></button></div>
-                                    <div className="book-det-item"><button className="btn"><i className="fa fa-trash"></i></button></div>
+                                    <div className="book-det-item"><button onClick={(event) => {
+                                        this.handleAddBook(event, dIndex);
+                                    }} className="btn"><i className="fa fa-plus"></i></button></div>
+                                    <div className="book-det-item"><button onClick={(event) => {
+                                        this.handleDelBook(event, dIndex);
+                                    }} className="btn"><i className="fa fa-trash"></i></button></div>
                             </div>);
                     });
                     return (bookDet);
@@ -59,7 +106,6 @@ class Cart extends Component {
 
                 return(<div key={cart.id} className="cart-content">
                             <h3>Cart Num: {cart.id}</h3>
-                            {cartDetails}
                             <div className="cart-delivery">
                                 <div className="cart-delivery-address"><strong>Delivery Address:</strong>{" "}
                                 { cart.DeliveryAddress}</div>
@@ -74,6 +120,7 @@ class Cart extends Component {
                                     <div className="cart-dd-item"><button className="btn"><i className="fa fa-cart-arrow-down"></i>Discard</button></div>
                                 </div>
                             </div>
+                            {cartDetails}
                       </div>);
             });
         }
