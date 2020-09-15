@@ -105,7 +105,7 @@ class App extends Component {
 							component={(routerProps) => <Books {...routerProps} />}
 						/>
 						<Route
-							path="/cart"
+							exact path="/cart"
 							component={(routerProps) => <Cart {...routerProps} />}
 						/>
 						<Route

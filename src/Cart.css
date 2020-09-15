@@ -1,10 +1,10 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
-.cart-container {
+.cart-container-screen {
     display: flex;
     flex-direction: column wrap;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 200px;
     font-family: arial;
 }
 
@@ -40,6 +40,9 @@
 
 .cart-delivery-address {
     margin: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .cart-dd-item {
@@ -56,6 +59,11 @@
 
 .book-det-item {
     margin: 10px;
+}
+
+.item-address {
+    width: 550px;
+    text-align: left;    
 }
 
 .book-title-cart {
