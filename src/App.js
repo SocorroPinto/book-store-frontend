@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AuthService from "./services/auth.service";
@@ -49,28 +49,6 @@ class App extends Component {
 							</Link>
 							<h1>Owl Books Store </h1>
 						</div>
-						<div className="App-account">
-							<Link className="account-item" to="/auth/signup">
-								Sign Up
-							</Link>
-							<Link className="account-item" to="/auth/login">
-								Log In
-							</Link>
-							<Link className="account-item" to="/auth/logout">
-								Log Out
-							</Link>
-						</div>
-					</div>
-
-					<div className="App-subheader">
-						<Link to="/" id="Cart">
-							<img
-								alt=""
-								className="iconHomePage"
-								src="https://img.pngio.com/digicollect-cart-icon-png-download-submit-order-icon-cart-icon-png-840_880.png"
-							/>
-						</Link>
-						<h1>Owl Books Store </h1>
 					</div>
 					<div className="App-account">
 						<Link className="account-item" to="/auth/signup">
