@@ -35,8 +35,6 @@ class Cart extends Component {
 	render() {
         const currentUser = this.state.currentUser;
         const currentCart = this.state.cart;
-        console.log('Estoy en el Cart ', currentUser);
-        console.log('El carrito es', currentCart);
 
         let infoCart = null;
 
@@ -49,7 +47,7 @@ class Cart extends Component {
                                     <img className="book-det-item cartImage" 
                                          src={`../booksImages/${book.Img}`} 
                                          alt="Boook Image"></img>
-                                    <div className="book-det-item book-title"><strong>{book.Title}</strong></div>
+                                    <div className="book-det-item book-title-cart"><strong>{book.Title}</strong></div>
                                     <div className="book-det-item"><strong>{"Qty: "}</strong>{detail.Quantity}</div>
                                     <div className="book-det-item"><strong>{"Price: "}</strong>{book.Cost}</div>
                                     <div className="book-det-item"><button className="btn"><i className="fa fa-plus"></i></button></div>
