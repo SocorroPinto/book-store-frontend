@@ -1,81 +1,47 @@
 import React, { Component } from "react";
+import { Switch, Route, Link } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css";
-import { Route, Link, Switch } from "react-router-dom";
-import axios from "axios";
+// import { Route, Link, Switch } from "react-router-dom";
+
+import AuthService from "./services/auth.service";
+
 import SignUp from "./SignUp.js";
+import Profile from "./Profile.js";
 import LogIn from "./LogIn.js";
-import LogOut from "./LogOut.js";
 import Books from "./Books.js";
 import BookDetails from "./BookDetails.js";
-const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
+import Cart from "./Cart.js";
+
 
 class App extends Component {
 	constructor(props) {
 		super();
+		this.logOut = this.logOut.bind(this);
 
+		this.state = {
+			currentUser: undefined
+		}
 	}
 
-	// componentDidMount() {
-	// 	let myPath = window.location.pathname;
+	componentDidMount() {
+		const user = AuthService.getCurrentUser();
 
-	// 	if ( myPath == '/books/mostselled') {
-	// 		axios.get(`${backendUrl}/books/mostselled?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
-	// 			this.setState({
-	// 				books: response.data.myBooks.books.books,
-	// 			});
-	// 		});
-	// 	} else if ( myPath == '/books/mostrated') {
-	// 		axios.get(`${backendUrl}/books/mostrated?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
-	// 			this.setState({
-	// 				books: response.data.myBooks.books.books,
-	// 			});
-	// 		});
-	// 	} else {
-	// 		axios.get(`${backendUrl}/books?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
-	// 			this.setState({
-	// 				books: response.data.myBooks.books.books,
-	// 			});
-	// 		});
-	// 	}
-	// }
-
-	// componentDidUpdate = () => {
-	//  	this.componentDidMount();
-	// }
-
-	addUser = (e) => {
-		axios
-			.post(`${backendUrl}/auth/signup`, {
-				name: e.target.name.value,
-				username: e.target.username.value,
-				password: e.target.password.value,
-				email: e.target.email.value,
-			})
-			.then((response) => {
-				console.log(response);
+		if (user) {
+			this.setState({
+				currentUser: AuthService.getCurrentUser(),
 			});
-		console.log(e.target.name.value);
+		}
+	}
+
+	logOut = () => {
+		AuthService.logout();
 	};
 
-	validateUser = (e) => {
-		console.log(e.target.username.value);
-		console.log(e.target.password.value);
-		axios
-			.post(`${backendUrl}/auth/login`, {
-				username: e.target.username.value,
-				password: e.target.password.value,
-			})
-			.then((response) => {
-				console.log(response);
-			});
-	};
-	logOut = (e) => {
-		console.log(e.target.value);
-		axios.get(`${backendUrl}/auth/logout`).then((response) => {
-			console.log(response);
-		});
-	};
 	render() {
+
+		const { currentUser } = this.state;
+
 		return (
 			<div className="App">
 				<header>
@@ -94,17 +60,21 @@ class App extends Component {
 						<Link className="account-item" to="/auth/signup">
 							Sign Up
 						</Link>
+						{ currentUser && (<Link className="account-item" to="/profile">
+							Profile
+										</Link>  )}
+
 						<Link className="account-item" to="/auth/login">
 							Log In
 						</Link>
-						<Link className="account-item" to="/auth/logout">
+						{ currentUser && (<Link className="account-item" to="/auth/logout">
 							Log Out
-						</Link>
+						</Link>  )}
 					</div>
 				</div>
 
 				<div className="App-subheader">
-					<Link to="/" id="Cart">
+					<Link to="/cart" id="Cart">
 						<img
 							alt=""
 							className="iconHomePage"
@@ -135,10 +105,14 @@ class App extends Component {
 					<Switch>
 						<Route
 							exact
-							path="/"
+							path={["/", "/books"]}
 							component={(routerProps) => (
 								<Books {...routerProps}  />
 							)}
+						/>
+						<Route
+							path="/cart"
+							component={(routerProps) => <Cart {...routerProps}  />}
 						/>
 						<Route
 							path="/books/mostrated"
@@ -149,21 +123,31 @@ class App extends Component {
 							component={(routerProps) => <Books {...routerProps}  />}
 						/>
 						<Route
-							path="/auth/signup"
+							exact path="/auth/signup"
 							component={(routerProps) => (
-								<SignUp {...routerProps} addUser={this.addUser} />
+								<SignUp {...routerProps} />
+								// <SignUp {...routerProps} addUser={this.addUser} />
 							)}
 						/>
+						{ currentUser && (
 						<Route
-							path="/auth/login"
+							exact path="/profile"
 							component={(routerProps) => (
-								<LogIn {...routerProps} validateUser={this.validateUser} />
+								<Profile {...routerProps} />
+								// <SignUp {...routerProps} addUser={this.addUser} />
+							)}
+						/> )}
+						<Route
+							exact path="/auth/login"
+							component={(routerProps) => (
+								<LogIn {...routerProps} />
+								// <LogIn {...routerProps} validateUser={this.validateUser} />
 							)}
 						/>
-						<Route
-							path="/auth/logout"
-							component={(routerProps) => <LogOut {...routerProps} />}
-						/>
+						{ currentUser && (<Route
+							exact path="/auth/logout"
+							component={(routerProps) => <LogIn {...routerProps} onClick={this.logOut}/>}
+						/>)}
 						<Route
 							path="/books/:id"
 							component={(routerProps) => (
