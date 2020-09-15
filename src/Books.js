@@ -1,44 +1,63 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import ReactDOM from "react-dom";
 import "./Books.css";
 import FakePromo from "./FakePromo";
 import FakeAd from "./FakeAd";
-
+import ReactStars from "react-rating-stars-component";
+import BookDetails from "./BookDetails";
+import UpdateRating from "./UpdateRating";
+import Pagination from "react-js-pagination";
 import axios from "axios";
+// import Pagination from "./Pagination";
+
 const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
+let myPath = "";
+let idToChange = "";
 
 class Books extends Component {
 	constructor(props) {
-		super(props);
+		super();
 		this.state = {
 			books: [],
 			limit: 6,
-			offset: 0
+			offset: 0,
+			newRating: 0,
+			activePage: 1,
 		};
 	}
 
 	componentDidMount() {
-		let myPath = this.props.location.pathname;
+		myPath =
+			this.props.location.pathname === "/"
+				? "/books"
+				: this.props.location.pathname;
 
-		if ( myPath == '/books/mostselled') {
-			axios.get(`${backendUrl}/books/mostselled?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
+		axios
+			.get(
+				`${backendUrl}${myPath}?limit=${this.state.limit}&offset=${this.state.offset}`
+			)
+			.then((response) => {
 				this.setState({
 					books: response.data.myBooks.books.books,
 				});
 			});
-		} else if ( myPath == '/books/mostrated') {
-			axios.get(`${backendUrl}/books/mostrated?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
-				this.setState({
-					books: response.data.myBooks.books.books,
-				});
-			});
-		} else {
-			axios.get(`${backendUrl}/books?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
-				this.setState({
-					books: response.data.myBooks.books.books,
-				});
-			});
-		}
+	}
+
+	updateRating = (event, bookUpd) => {
+		console.log("Update rating");
+		bookUpd.rating = event;
+		this.setState({ book: bookUpd });
+		axios.put(`${backendUrl}/books/${bookUpd.id}`, bookUpd).then((response) => {
+			console.log(response);
+		});
+		console.log(bookUpd);
+		console.log(bookUpd);
+	};
+
+	handlePageChange(pageNumber) {
+		console.log(`active page is ${pageNumber}`);
+		this.setState({ activePage: pageNumber });
 	}
 
 	render() {
@@ -63,16 +82,33 @@ class Books extends Component {
 						</div>
 						{/* <div className='book-description'>{book.Description}</div> */}
 						<div className="book-rating">
-							<h5>Raiting</h5>
-							<span className="fa fa-star checked"></span>
-							<span className="fa fa-star checked"></span>
-							<span className="fa fa-star checked"></span>
-							<span className="fa fa-star"></span>
-							<span className="fa fa-star"></span>
+							<form
+								onSubmit={(event) => {
+									this.updateRating(event, book.id);
+								}}
+							>
+								<ReactStars
+									count={5}
+									onChange={(event) => {
+										this.updateRating(event, book);
+									}}
+									size={22}
+									activeColor="#ffd700"
+									edit={true}
+								/>
+							</form>
+							<form>
+								<input type="submit" value="Add book" className="button" />
+							</form>
 						</div>
-						<form>
-							<input type="submit" value="Add book" className="button" />
-						</form>
+						<div>
+							<Route
+								path="/books/:id"
+								component={(routerProps) => (
+									<BookDetails {...routerProps} books={this.state.books} />
+								)}
+							/>
+						</div>
 					</div>
 				</div>
 			);
@@ -83,16 +119,28 @@ class Books extends Component {
 				<div className="book-collection">
 					{allBooks}
 					<div className="book-pagination">
-						<div><Link>{'<<<'} Prev</Link></div>
-						<div><Link>Next{'>>>'}</Link></div>
-					</div> 
+						<div className="pagination">
+							<Pagination
+								activePage={this.state.activePage}
+								itemsCountPerPage={6}
+								totalItemsCount={this.state.books.length}
+								pageRangeDisplayed={5}
+								onChange={this.handlePageChange}
+							/>
+							{/* <Pagination
+								totalBooks={this.state.books.length}
+								backendUrl={backendUrl}
+								myPath={myPath}
+							/> */}
+						</div>
+					</div>
 				</div>
 				<div className="fakeAdvertising">
-					<FakeAd/>
-                    <FakePromo/>
-                    <FakeAd/>
-                    <FakePromo/>
-                    <FakeAd/> 
+					<FakeAd />
+					<FakePromo />
+					<FakeAd />
+					<FakePromo />
+					<FakeAd />
 				</div>
 			</div>
 		);
