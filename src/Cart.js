@@ -42,36 +42,41 @@ class Cart extends Component {
 
         if (currentCart) {
             infoCart = currentCart.map((cart) => {
-                console.log(cart)
-
                 const cartDetails = cart.CartDetails.map((detail) => {
                     const bookDet = detail.Books.map((book) => {
                         return(<div key={book.id} className="book-det">
-                                    <div>{book.id}</div>
-                                    <img className="cartImage" 
+                                    <div className="book-det-item">{book.id}{".-  "}</div>
+                                    <img className="book-det-item cartImage" 
                                          src={`../booksImages/${book.Img}`} 
                                          alt="Boook Image"></img>
-                                    <h3>{book.Title}</h3>
-                                    <div><strong>{"Qty: "}</strong>{detail.Quantity}</div>
-                                    <div><strong>{"Price: "}</strong>{book.Cost}</div>
+                                    <div className="book-det-item book-title"><strong>{book.Title}</strong></div>
+                                    <div className="book-det-item"><strong>{"Qty: "}</strong>{detail.Quantity}</div>
+                                    <div className="book-det-item"><strong>{"Price: "}</strong>{book.Cost}</div>
+                                    <div className="book-det-item"><button className="btn"><i className="fa fa-plus"></i></button></div>
+                                    <div className="book-det-item"><button className="btn"><i className="fa fa-trash"></i></button></div>
                             </div>);
                     });
                     return (bookDet);
                 });
 
-                return(<div key={cart.id} >
+                return(<div key={cart.id} className="cart-content">
                             <h3>Cart Num: {cart.id}</h3>
-                        <div>
                             {cartDetails}
-                            <div><strong>Delivery Address:</strong>{" "}
-                            { cart.DeliveryAddress}</div>
-                            <div><strong>PurchaseDate:</strong>{" "}
-                            { cart.PurchaseDate}</div>
-                            <div><strong>DeliveryDate:</strong>{" "}
-                            { cart.DeliveryDate}</div>
-                            <div><strong>Total:</strong>{" "}
-                            { cart.Total}</div>
-                        </div>
+                            <div className="cart-delivery">
+                                <div className="cart-delivery-address"><strong>Delivery Address:</strong>{" "}
+                                { cart.DeliveryAddress}</div>
+                                <div className="cart-delivery-dates">
+                                    <div className="cart-dd-item"><strong>PurchaseDate:</strong>{" "}
+                                    { cart.PurchaseDate}</div>
+                                    <div className="cart-dd-item"><strong>DeliveryDate:</strong>{" "}
+                                    { cart.DeliveryDate}</div>
+                                    <div className="cart-dd-item"><strong>Total:</strong>{" "}
+                                    { cart.Total}</div>
+
+                                    <div className="cart-dd-item"><button className="btn"><i className="fa fa-shopping-cart"></i></button></div>
+                                    <div className="cart-dd-item"><button className="btn"><i className="fa fa-cart-arrow-down"></i></button></div>
+                                </div>
+                            </div>
                       </div>);
             });
         }
@@ -82,9 +87,6 @@ class Cart extends Component {
                     Not User Logged.
                 </div>)}
                 {infoCart}
-                <div className="cart-info">
-
-                </div>
             </div>
         );
     }
