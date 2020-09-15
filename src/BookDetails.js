@@ -34,12 +34,16 @@ class BookDetails extends Component {
 
 				<div className="bookDet-info">
 					<div className="bookDet-header">
-						<h2>Title: {this.state.bookDetail.Title}</h2>
-						<h4>Author: {this.state.bookDetail.Author}</h4>
+						<h2> {this.state.bookDetail.Title}</h2>
+						<h5>
+							<label>Author:</label> {this.state.bookDetail.Author}
+						</h5>
 					</div>
 					<div className="bookDet-rating">
-						<h4>Rating: {this.state.bookDetail.Rating}</h4>
-						<h4>Rating:</h4>
+						<h5>Rating: {this.state.bookDetail.Rating}</h5>
+						<h5>
+							<label>Rating:</label>
+						</h5>
 						<ReactStars
 							value={this.state.bookDetail.Rating}
 							count={5}
@@ -49,14 +53,29 @@ class BookDetails extends Component {
 						/>
 					</div>
 					<div className="bookDet-extraInfo">
-						<h3>Publication year: {this.state.bookDetail.PublicationYear}</h3>
-						<h3>Pages: {this.state.bookDetail.Pages}</h3>
-						<h3>Price: ${this.state.bookDetail.Cost}</h3>
-						<h3>Language: {this.state.bookDetail.Language}</h3>{" "}
+						<h5>
+							<label>Publication year:</label>
+							{this.state.bookDetail.PublicationYear}
+						</h5>
+						<h5>
+							<label>Pages:</label> {this.state.bookDetail.Pages}
+						</h5>
+						<h5>
+							<label>Price:</label>${this.state.bookDetail.Cost}
+						</h5>
+						<h5>
+							<label>Language:</label>
+							{this.state.bookDetail.Language}
+						</h5>
 					</div>
 					<div class Name="bookDet-summary">
-						<h3>Description: {this.state.bookDetail.Descriiption}</h3>
-						<h3>Summary: {this.state.bookDetail.Summary}</h3>
+						<h5>
+							<label>Description:</label>
+							{this.state.bookDetail.Descriiption}
+						</h5>
+						<h5>
+							<label>Summary:</label>: {this.state.bookDetail.Summary}
+						</h5>
 					</div>
 				</div>
 			</div>
