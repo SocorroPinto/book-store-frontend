@@ -49,7 +49,7 @@ class Cart extends Component {
                                          alt="Boook Image"></img>
                                     <div className="book-det-item book-title-cart"><strong>{book.Title}</strong></div>
                                     <div className="book-det-item"><strong>{"Qty: "}</strong>{detail.Quantity}</div>
-                                    <div className="book-det-item"><strong>{"Price: "}</strong>{book.Cost}</div>
+                                    <div className="book-det-item"><strong>{"Price: $"}</strong>{book.Cost}</div>
                                     <div className="book-det-item"><button className="btn"><i className="fa fa-plus"></i></button></div>
                                     <div className="book-det-item"><button className="btn"><i className="fa fa-trash"></i></button></div>
                             </div>);
@@ -70,9 +70,8 @@ class Cart extends Component {
                                     { cart.DeliveryDate}</div>
                                     <div className="cart-dd-item"><strong>Total:</strong>{" "}
                                     { cart.Total}</div>
-
-                                    <div className="cart-dd-item"><button className="btn"><i className="fa fa-shopping-cart"></i></button></div>
-                                    <div className="cart-dd-item"><button className="btn"><i className="fa fa-cart-arrow-down"></i></button></div>
+                                    <div className="cart-dd-item"><button className="btn"><i className="fa fa-shopping-cart"></i>Confirm</button></div>
+                                    <div className="cart-dd-item"><button className="btn"><i className="fa fa-cart-arrow-down"></i>Discard</button></div>
                                 </div>
                             </div>
                       </div>);

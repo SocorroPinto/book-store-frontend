@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, Link } from "react-router-dom"
+import { Redirect, Switch, Route, Link } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css";
 // import { Route, Link, Switch } from "react-router-dom";
@@ -36,7 +36,6 @@ class App extends Component {
 
 	logOut = () => {
 		AuthService.logout();
-		//window.location.reload(false);
 	};
 
 	render() {
