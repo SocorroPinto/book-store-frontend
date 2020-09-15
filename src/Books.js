@@ -24,10 +24,22 @@ class Books extends Component {
 	}
 
 	componentDidMount() {
-		myPath =
-			this.props.location.pathname === "/"
-				? "/books"
-				: this.props.location.pathname;
+		console.log("componentDidMount: ", this.props);
+
+		if (this.props.location.search !== "") {
+			myPath = `/books/${this.props.location.search}`;
+		} else {
+			if (this.props.location.pathname === "/") {
+				myPath = "/books";
+			} else {
+				myPath = this.props.location.pathname;
+			}
+		}
+		console.log("myPath-->", myPath);
+		// myPath =
+		// 	this.props.location.pathname === "/"
+		// 		? "/books"
+		// 		: this.props.location.pathname;
 
 		axios
 			.get(
