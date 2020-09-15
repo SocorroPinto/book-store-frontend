@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 import { Link, Route } from "react-router-dom";
-import ReactDOM from "react-dom";
 import "./Books.css";
 import FakePromo from "./FakePromo";
 import FakeAd from "./FakeAd";
 import ReactStars from "react-rating-stars-component";
 import BookDetails from "./BookDetails";
-import UpdateRating from "./UpdateRating";
 import Pagination from "react-js-pagination";
 import axios from "axios";
 // import Pagination from "./Pagination";
 
 const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
 let myPath = "";
-let idToChange = "";
 
 class Books extends Component {
 	constructor(props) {
@@ -46,12 +43,13 @@ class Books extends Component {
 
 	updateRating = (event, bookUpd) => {
 		console.log("Update rating");
-		bookUpd.rating = event;
+		bookUpd.Rating = event;
+		console.log(bookUpd);
 		this.setState({ book: bookUpd });
+		console.log(`${backendUrl}/books/${bookUpd.id}`);
 		axios.put(`${backendUrl}/books/${bookUpd.id}`, bookUpd).then((response) => {
 			console.log(response);
 		});
-		console.log(bookUpd);
 		console.log(bookUpd);
 	};
 
