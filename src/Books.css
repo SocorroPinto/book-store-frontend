@@ -6,6 +6,7 @@
 	flex-wrap: wrap;
 	flex-direction: row;
 	align-items: flex-start;
+	margin-top: 30px;
 }
 
 .book-collection {
@@ -27,7 +28,8 @@
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	max-width: 320px;
 	max-height: 600px;
-	margin: auto;
+	/* margin: auto; */
+	margin: 10px;
 	text-align: center;
 	font-family: arial;
 }
@@ -50,16 +52,23 @@
 	font-size: 22px;
 }
 
+
+
 .books .book-info {
 	display: flex;
 	flex-flow: column wrap;
 	padding: 15px;
 }
+/* 
+.book-rating {
+
+} */
 
 .books .book-title {
 	text-align: left;
 	font-size: 14px;
 	font-weight: bold;
+	height: 90px;
 }
 
 .books .book-description {
@@ -70,7 +79,7 @@
 
 .books .book-id {
 	max-width: 200px;
-	max-height: 280px;
+	height: 280px;
 }
 
 .books .button {
@@ -84,6 +93,11 @@
 	width: 100%;
 	font-size: 18px;
 	height: 50px;
+}
+
+.button-form {
+	position: relative;
+	bottom: 0px;
 }
 
 .books .button:hover {

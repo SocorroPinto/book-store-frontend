@@ -97,7 +97,7 @@ class Books extends Component {
 								activeColor="#ffd700"
 								edit={true}
 							/>
-							<form>
+							<form className="button-form">
 								<input type="submit" value="Add book" className="button" />
 							</form>
 						</div>
