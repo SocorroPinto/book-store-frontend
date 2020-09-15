@@ -36,6 +36,7 @@ class App extends Component {
 
 	logOut = () => {
 		AuthService.logout();
+		//window.location.reload(false);
 	};
 
 	render() {
@@ -67,7 +68,7 @@ class App extends Component {
 						<Link className="account-item" to="/auth/login">
 							Log In
 						</Link>
-						{ currentUser && (<Link className="account-item" to="/auth/logout">
+						{ currentUser && (<Link className="account-item" to="/auth/logout" 	onClick={this.logOut} >
 							Log Out
 						</Link>  )}
 					</div>
@@ -146,7 +147,7 @@ class App extends Component {
 						/>
 						{ currentUser && (<Route
 							exact path="/auth/logout"
-							component={(routerProps) => <LogIn {...routerProps} onClick={this.logOut}/>}
+							component={(routerProps) => <LogIn {...routerProps} />}
 						/>)}
 						<Route
 							path="/books/:id"
