@@ -13,6 +13,7 @@ class BookDetails extends Component {
 		};
 	}
 	componentDidMount() {
+		console.log("this.props.match.url", this.props.match.url);
 		axios.get(`${backendUrl}${this.props.match.url}`).then((response) => {
 			this.setState({
 				bookDetail: response.data.book,

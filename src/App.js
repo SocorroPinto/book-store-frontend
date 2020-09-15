@@ -9,7 +9,7 @@ import LogIn from "./LogIn.js";
 import Books from "./Books.js";
 import BookDetails from "./BookDetails.js";
 import Cart from "./Cart.js";
-
+let searchTxt = "";
 class App extends Component {
 	constructor(props) {
 		super();
@@ -17,6 +17,7 @@ class App extends Component {
 
 		this.state = {
 			currentUser: undefined,
+			searchTxt: "",
 		};
 	}
 
@@ -33,10 +34,23 @@ class App extends Component {
 	logOut = () => {
 		AuthService.logout();
 	};
+	searchBook = (e) => {
+		searchTxt = e.target.value;
+		//console.log("Search", `${backendUrl}/books/search?tag=${e.target.value}`);
+		// axios
+		// 	.get(`${backendUrl}/books/search?tag=${e.target.value}`)
+		// 	.then((response) => {
+		// 		console.log("after axios ", response.data.myBooks.books.books);
+		this.setState({
+			// books: response.data.myBooks.books.books,
+			searchTxt: e.target.value,
+		});
+		// });
+		console.log("searchBook-->", searchTxt);
+	};
 
 	render() {
 		const { currentUser } = this.state;
-
 		return (
 			<div className="App">
 				<header>
@@ -85,12 +99,21 @@ class App extends Component {
 						<Link to="/books/mostrated">Most Rated</Link>
 						<div className="searchingBooks">
 							<label className="subheader-item">Search:</label>
-							<input className="inputField" type="text" name="search" />
+							<form
+								onChange={(event) => {
+									this.searchBook(event);
+								}}
+							>
+								<input className="inputField" type="text" name="search" />
+							</form>
 							<img
 								id="searchImage"
 								alt=""
 								src="https://freeiconshop.com/wp-content/uploads/edd/search-var-flat.png"
 								className="iconHomePage"
+								onClick={(event) => {
+									this.searchBook(event);
+								}}
 							/>
 						</div>
 					</div>
@@ -118,6 +141,12 @@ class App extends Component {
 						<Route
 							path="/books/:id"
 							component={(routerProps) => <BookDetails {...routerProps} />}
+						/>
+						<Route
+							path="/books/search"
+							component={(routerProps) => (
+								<Books {...routerProps} searchTxt={searchTxt} />
+							)}
 						/>
 						<Route
 							exact
