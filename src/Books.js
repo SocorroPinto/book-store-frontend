@@ -1,26 +1,23 @@
 import React, { Component } from "react";
 import { Link, Route } from "react-router-dom";
-import ReactDOM from "react-dom";
 import "./Books.css";
 import FakePromo from "./FakePromo";
 import FakeAd from "./FakeAd";
 import ReactStars from "react-rating-stars-component";
 import BookDetails from "./BookDetails";
-import UpdateRating from "./UpdateRating";
 import Pagination from "react-js-pagination";
 import axios from "axios";
 // import Pagination from "./Pagination";
 
 const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
 let myPath = "";
-let idToChange = "";
 
 class Books extends Component {
 	constructor(props) {
 		super();
 		this.state = {
 			books: [],
-			limit: 6,
+			limit: 30,
 			offset: 0,
 			newRating: 0,
 			activePage: 1,
@@ -45,14 +42,12 @@ class Books extends Component {
 	}
 
 	updateRating = (event, bookUpd) => {
-		console.log("Update rating");
-		bookUpd.rating = event;
+		bookUpd.Rating = event;
 		this.setState({ book: bookUpd });
-		axios.put(`${backendUrl}/books/${bookUpd.id}`, bookUpd).then((response) => {
-			console.log(response);
-		});
-		console.log(bookUpd);
-		console.log(bookUpd);
+		console.log(`${backendUrl}/books/${bookUpd.id}`);
+		axios
+			.put(`${backendUrl}/books/${bookUpd.id}`, bookUpd)
+			.then((response) => {});
 	};
 
 	handlePageChange(pageNumber) {
@@ -80,7 +75,6 @@ class Books extends Component {
 						<div className="book-price">
 							<h4>Price: ${book.Cost}</h4>
 						</div>
-						{/* <div className='book-description'>{book.Description}</div> */}
 						<div className="book-rating">
 							<form
 								onSubmit={(event) => {
@@ -88,6 +82,7 @@ class Books extends Component {
 								}}
 							>
 								<ReactStars
+									value={book.Rating}
 									count={5}
 									onChange={(event) => {
 										this.updateRating(event, book);
@@ -104,6 +99,18 @@ class Books extends Component {
 						<div>
 							<Route
 								path="/books/:id"
+								component={(routerProps) => (
+									<BookDetails {...routerProps} books={this.state.books} />
+								)}
+							/>
+							<Route
+								path="/books/mostselled"
+								component={(routerProps) => (
+									<BookDetails {...routerProps} books={this.state.books} />
+								)}
+							/>
+							<Route
+								path="/books/mostrated"
 								component={(routerProps) => (
 									<BookDetails {...routerProps} books={this.state.books} />
 								)}

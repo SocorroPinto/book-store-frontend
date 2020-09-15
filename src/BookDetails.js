@@ -1,44 +1,90 @@
 import React, { Component } from "react";
 import "./BookDetails.css";
+import axios from "axios";
+import ReactStars from "react-rating-stars-component";
+
+const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
 
 class BookDetails extends Component {
 	constructor(props) {
-		super();
+		super(props);
 		this.state = {
-			book: null,
+			bookDetail: [],
 		};
 	}
-
+	componentDidMount(e) {
+		console.log(this.props);
+		console.log(e);
+		console.log(`${backendUrl}/books/${this.props.match.params.id}`);
+		axios
+			.get(`${backendUrl}/books/${this.props.match.params.id}`)
+			.then((response) => {
+				this.setState({
+					bookDetail: response.data.book,
+				});
+			});
+		console.log(this.state.bookDetail);
+	}
 	render() {
-		const bookDetail = this.props.books.find((book) => {
-			return book.id == this.props.match.params.id;
-		});
 		return (
 			<div className="bookDetail">
-				console.log("Book Details");
-				{/* <img src={`../booksImages/${bookDetail.Img}`} alt="" id="bookImg" />
-				<div className="bookDet-header">
-					<h2>Title: {bookDetail.Title}</h2>
-					<h3>Author: {bookDetail.Author}</h3>
+				<div className="bookDet-Img">
+					<img
+						src={`../booksImages/${this.state.bookDetail.Img}`}
+						alt=""
+						id="bookImg"
+					/>
+					<form>
+						<input type="submit" value="Add book" className="button" />
+					</form>
 				</div>
-				<div>
-					<div className="book-rating">
-						<h5>Raiting</h5> */}
-				{/* 	<span className={vClassRatingChecked}></span>
-						<span className="fa fa-star"></span>
-						<span className="fa fa-star"></span>
-						<span className="fa fa-star"></span>
-						<span className="fa fa-star"></span> */}
-				{/* </div>
-					<h3>Publication year: {bookDetail.PublicationYear}</h3>
-					<h3>Pages: {bookDetail.Pages}</h3>
-					<h3>Price: {bookDetail.Cost}</h3>
-					<h3>Language: {bookDetail.Language}</h3>{" "}
+
+				<div className="bookDet-info">
+					<div className="bookDet-header">
+						<h3> {this.state.bookDetail.Title}</h3>
+						<h5>
+							<label>Author:</label> {this.state.bookDetail.Author}
+						</h5>
+					</div>
+					<div className="bookDet-rating">
+						<h5>Rating: {this.state.bookDetail.Rating}</h5>
+						<h5>
+							<label>Rating:</label>
+						</h5>
+						<ReactStars
+							value={this.state.bookDetail.Rating}
+							count={5}
+							size={22}
+							activeColor="#ffd700"
+							edit={false}
+						/>
+					</div>
+					<div className="bookDet-extraInfo">
+						<h5>
+							<label>Publication year:</label>
+							{this.state.bookDetail.PublicationYear}
+						</h5>
+						<h5>
+							<label>Pages:</label> {this.state.bookDetail.Pages}
+						</h5>
+						<h5>
+							<label>Price:</label>${this.state.bookDetail.Cost}
+						</h5>
+						<h5>
+							<label>Language:</label>
+							{this.state.bookDetail.Language}
+						</h5>
+					</div>
+					<div class Name="bookDet-summary">
+						<h5>
+							<label>Description:</label>
+							{this.state.bookDetail.Descriiption}
+						</h5>
+						<h5>
+							<label>Summary:</label>: {this.state.bookDetail.Summary}
+						</h5>
+					</div>
 				</div>
-				<div>
-					<h3>Description: {bookDetail.Descriiption}</h3>
-					<h3>Summary: {bookDetail.Summary}</h3>
-				</div> */}
 			</div>
 		);
 	}
