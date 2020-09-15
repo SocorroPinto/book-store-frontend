@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Books.css";
 import FakePromo from "./FakePromo";
 import FakeAd from "./FakeAd";
 import ReactStars from "react-rating-stars-component";
-import BookDetails from "./BookDetails";
 import Pagination from "react-js-pagination";
 import axios from "axios";
 // import Pagination from "./Pagination";
@@ -61,7 +60,7 @@ class Books extends Component {
 				<div className="books" key={book.id}>
 					<Link to={`/books/${book.id}`}>
 						<img
-							key={index}
+							key={book.id}
 							src={`../booksImages/${book.Img}`}
 							alt=""
 							className="book-id"
@@ -76,45 +75,19 @@ class Books extends Component {
 							<h4>Price: ${book.Cost}</h4>
 						</div>
 						<div className="book-rating">
-							<form
-								onSubmit={(event) => {
-									this.updateRating(event, book.id);
+							<ReactStars
+								value={book.Rating}
+								count={5}
+								onChange={(event) => {
+									this.updateRating(event, book);
 								}}
-							>
-								<ReactStars
-									value={book.Rating}
-									count={5}
-									onChange={(event) => {
-										this.updateRating(event, book);
-									}}
-									size={22}
-									activeColor="#ffd700"
-									edit={true}
-								/>
-							</form>
+								size={22}
+								activeColor="#ffd700"
+								edit={true}
+							/>
 							<form>
 								<input type="submit" value="Add book" className="button" />
 							</form>
-						</div>
-						<div>
-							<Route
-								path="/books/:id"
-								component={(routerProps) => (
-									<BookDetails {...routerProps} books={this.state.books} />
-								)}
-							/>
-							<Route
-								path="/books/mostselled"
-								component={(routerProps) => (
-									<BookDetails {...routerProps} books={this.state.books} />
-								)}
-							/>
-							<Route
-								path="/books/mostrated"
-								component={(routerProps) => (
-									<BookDetails {...routerProps} books={this.state.books} />
-								)}
-							/>
 						</div>
 					</div>
 				</div>

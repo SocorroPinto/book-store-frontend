@@ -103,7 +103,8 @@ class App extends Component {
 							component={(routerProps) => <Books {...routerProps} />}
 						/>
 						<Route
-							exact path="/cart"
+							exact
+							path="/cart"
 							component={(routerProps) => <Cart {...routerProps} />}
 						/>
 						<Route
@@ -113,6 +114,10 @@ class App extends Component {
 						<Route
 							path="/books/mostselled"
 							component={(routerProps) => <Books {...routerProps} />}
+						/>
+						<Route
+							path="/books/:id"
+							component={(routerProps) => <BookDetails {...routerProps} />}
 						/>
 						<Route
 							exact
@@ -147,12 +152,6 @@ class App extends Component {
 								component={(routerProps) => <LogIn {...routerProps} />}
 							/>
 						)}
-						<Route
-							path="/books/:id"
-							component={(routerProps) => (
-								<BookDetails {...routerProps} books={this.state.books} />
-							)}
-						/>
 					</Switch>
 				</main>
 

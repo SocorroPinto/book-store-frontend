@@ -12,18 +12,12 @@ class BookDetails extends Component {
 			bookDetail: [],
 		};
 	}
-	componentDidMount(e) {
-		console.log(this.props);
-		console.log(e);
-		console.log(`${backendUrl}/books/${this.props.match.params.id}`);
-		axios
-			.get(`${backendUrl}/books/${this.props.match.params.id}`)
-			.then((response) => {
-				this.setState({
-					bookDetail: response.data.book,
-				});
+	componentDidMount() {
+		axios.get(`${backendUrl}${this.props.match.url}`).then((response) => {
+			this.setState({
+				bookDetail: response.data.book,
 			});
-		console.log(this.state.bookDetail);
+		});
 	}
 	render() {
 		return (
@@ -38,7 +32,6 @@ class BookDetails extends Component {
 						<input type="submit" value="Add book" className="button" />
 					</form>
 				</div>
-
 				<div className="bookDet-info">
 					<div className="bookDet-header">
 						<h3> {this.state.bookDetail.Title}</h3>
