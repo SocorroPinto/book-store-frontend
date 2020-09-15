@@ -9,14 +9,14 @@
 }
 
 .book-collection {
-	width: 80%;
+	width: 75%;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 }
 
 .fakeAdvertising {
-	width: 18%;
+	width: 22%;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;

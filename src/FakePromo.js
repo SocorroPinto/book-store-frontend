@@ -38,7 +38,7 @@ class FakePromo extends Component {
             ranImageIndex: Math.floor(Math.random() * 9),
         }), 9000);
     }
-
+    
     componentDidMount = () => {
         this.imageChanger();
     }

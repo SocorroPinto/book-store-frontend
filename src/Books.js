@@ -15,8 +15,12 @@ const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
 let myPath = "";
 let idToChange = "";
 
+import axios from "axios";
+const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
+
 class Books extends Component {
 	constructor(props) {
+<<<<<<< HEAD
 		super();
 		this.state = {
 			books: [],
@@ -24,10 +28,18 @@ class Books extends Component {
 			offset: 0,
 			newRating: 0,
 			activePage: 1,
+=======
+		super(props);
+		this.state = {
+			books: [],
+			limit: 6,
+			offset: 0
+>>>>>>> 78c6231adcf99be509257528a9b4a46335aeec64
 		};
 	}
 
 	componentDidMount() {
+<<<<<<< HEAD
 		myPath =
 			this.props.location.pathname === "/"
 				? "/books"
@@ -38,6 +50,12 @@ class Books extends Component {
 				`${backendUrl}${myPath}?limit=${this.state.limit}&offset=${this.state.offset}`
 			)
 			.then((response) => {
+=======
+		let myPath = this.props.location.pathname;
+
+		if ( myPath == '/books/mostselled') {
+			axios.get(`${backendUrl}/books/mostselled?limit=${this.state.limit}&offset=${this.state.offset}`).then((response) => {
+>>>>>>> 78c6231adcf99be509257528a9b4a46335aeec64
 				this.setState({
 					books: response.data.myBooks.books.books,
 				});
@@ -80,7 +98,7 @@ class Books extends Component {
 						<div className="book-price">
 							<h4>Price: ${book.Cost}</h4>
 						</div>
-						<div className="book-description">{book.Description}</div>
+						{/* <div className='book-description'>{book.Description}</div> */}
 						<div className="book-rating">
 							<form
 								onSubmit={(event) => {
@@ -136,11 +154,11 @@ class Books extends Component {
 					</div>
 				</div>
 				<div className="fakeAdvertising">
-					<FakeAd />
-					<FakePromo />
-					<FakeAd />
-					<FakePromo />
-					<FakeAd />
+					<FakeAd/>
+                    <FakePromo/>
+                    <FakeAd/>
+                    <FakePromo/>
+                    <FakeAd/> 
 				</div>
 			</div>
 		);
