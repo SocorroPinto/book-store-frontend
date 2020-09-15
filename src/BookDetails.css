@@ -2,12 +2,51 @@
 
 .bookDetail {
 	display: flex;
-	flex-flow: row wrap;
-	width: 70%;
-	height: 400px;
+	flex: 1 0 33.33%;
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+	max-width: 1600px;
+	max-height: 1600px;
+	margin: auto;
+	padding: 30px;
+	text-align: flex-start;
+	flex-flow: row nowrap;
+	font-family: "Bentham";
+}
+.bookDet-info {
+	display: flex;
+	flex-flow: column nowrap;
 }
 #bookImg {
 	display: flex;
 	width: 250px;
 	height: 400px;
+	flex: 1 0 33.33%;
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+	max-width: 250px;
+	max-height: 400px;
+	margin: auto;
+	align-content: flex-start;
+	font-family: arial;
+}
+.bookDet-Img {
+	flex: 1 0 33.33%;
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+	max-width: 250px;
+	max-height: 400px;
+}
+.bookDet-header {
+	/* flex: 1 0 100%; */
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+	/* border: 3px solid green;*/
+	font-size: 23px;
+	font-weight: bolder;
+	height: 100px;
+	background-color: #8d9db6;
+}
+.bookDet-rating {
+	display: inline-flex;
+	flex-flow: row wrap;
+	width: 100%;
+	border: 5px solid pink;
+	flex-direction: row;
 }

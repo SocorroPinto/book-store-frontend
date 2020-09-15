@@ -17,7 +17,7 @@ class Books extends Component {
 		super();
 		this.state = {
 			books: [],
-			limit: 6,
+			limit: 30,
 			offset: 0,
 			newRating: 0,
 			activePage: 1,
@@ -86,6 +86,7 @@ class Books extends Component {
 								}}
 							>
 								<ReactStars
+									value={book.Rating}
 									count={5}
 									onChange={(event) => {
 										this.updateRating(event, book);

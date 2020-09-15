@@ -10,8 +10,6 @@ import Books from "./Books.js";
 import BookDetails from "./BookDetails.js";
 import Cart from "./Cart.js";
 
-const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
-
 class App extends Component {
 	constructor(props) {
 		super();
