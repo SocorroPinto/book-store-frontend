@@ -103,6 +103,18 @@ class Books extends Component {
 									<BookDetails {...routerProps} books={this.state.books} />
 								)}
 							/>
+							<Route
+								path="/books/mostselled"
+								component={(routerProps) => (
+									<BookDetails {...routerProps} books={this.state.books} />
+								)}
+							/>
+							<Route
+								path="/books/mostrated"
+								component={(routerProps) => (
+									<BookDetails {...routerProps} books={this.state.books} />
+								)}
+							/>
 						</div>
 					</div>
 				</div>
