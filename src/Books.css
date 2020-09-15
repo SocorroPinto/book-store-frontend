@@ -53,6 +53,7 @@
 .books .book-info {
 	display: flex;
 	flex-flow: column wrap;
+	padding: 15px;
 }
 
 .books .book-title {

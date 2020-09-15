@@ -38,7 +38,7 @@ class BookDetails extends Component {
 						<h4>Author: {this.state.bookDetail.Author}</h4>
 					</div>
 					<div className="bookDet-rating">
-						<h4>Author: {this.state.bookDetail.Rating}</h4>
+						<h4>Rating: {this.state.bookDetail.Rating}</h4>
 						<h4>Rating:</h4>
 						<ReactStars
 							value={this.state.bookDetail.Rating}
@@ -49,13 +49,12 @@ class BookDetails extends Component {
 						/>
 					</div>
 					<div className="bookDet-extraInfo">
-						<div className="book-rating"></div>
 						<h3>Publication year: {this.state.bookDetail.PublicationYear}</h3>
 						<h3>Pages: {this.state.bookDetail.Pages}</h3>
-						<h3>Price: {this.state.bookDetail.Cost}</h3>
+						<h3>Price: ${this.state.bookDetail.Cost}</h3>
 						<h3>Language: {this.state.bookDetail.Language}</h3>{" "}
 					</div>
-					<div>
+					<div class Name="bookDet-summary">
 						<h3>Description: {this.state.bookDetail.Descriiption}</h3>
 						<h3>Summary: {this.state.bookDetail.Summary}</h3>
 					</div>

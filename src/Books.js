@@ -42,15 +42,12 @@ class Books extends Component {
 	}
 
 	updateRating = (event, bookUpd) => {
-		console.log("Update rating");
 		bookUpd.Rating = event;
-		console.log(bookUpd);
 		this.setState({ book: bookUpd });
 		console.log(`${backendUrl}/books/${bookUpd.id}`);
-		axios.put(`${backendUrl}/books/${bookUpd.id}`, bookUpd).then((response) => {
-			console.log(response);
-		});
-		console.log(bookUpd);
+		axios
+			.put(`${backendUrl}/books/${bookUpd.id}`, bookUpd)
+			.then((response) => {});
 	};
 
 	handlePageChange(pageNumber) {
@@ -78,7 +75,6 @@ class Books extends Component {
 						<div className="book-price">
 							<h4>Price: ${book.Cost}</h4>
 						</div>
-						{/* <div className='book-description'>{book.Description}</div> */}
 						<div className="book-rating">
 							<form
 								onSubmit={(event) => {
