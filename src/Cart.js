@@ -2,11 +2,12 @@ import React, { Component } from "react";
 //import { Link } from "react-router-dom";
 import AuthService from "./services/auth.service";
 import "./Cart.css";
+import axios from "axios";
+const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
+
 // import FakePromo from "./FakePromo";
 // import FakeAd from "./FakeAd";
 
-import axios from "axios";
-const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
 
 class Cart extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class Cart extends Component {
             currentUser: AuthService.getCurrentUser(),
             isEditable: false,
             cart: null,
+            message: ""
         }
     }
 
@@ -49,13 +51,14 @@ class Cart extends Component {
     deleteCart = (pCart) => {
 		axios.delete(`${backendUrl}/carts/${pCart.id}`)
 			.then((response) => {
-                console.log(response.data.message)
+                this.setState({
+                    message: 'There isn\'t a cart open.'
+                });
             });
     }
 
     deleteCartDetail = (pCartDet) => {
-        console.log('Detalle del carrito a borrar: ', pCartDet);
-        console.log('El id: ', pCartDet.id);
+
         axios.delete(`${backendUrl}/cartdets/${pCartDet.id}`)
 			.then((response) => {
                 console.log(response.data.message)
@@ -65,14 +68,12 @@ class Cart extends Component {
     componentDidMount() {
         const { currentUser } = this.state;
         if (currentUser) {
-
             axios.get(`${backendUrl}/carts/byuser/${currentUser.id}`).then((response) => {
-
                 this.setState({
                     cart: response.data.carts,
                 });
             });
-        }
+        } 
     }
 
     handleAddBook = (e, indexDetail) => {
@@ -102,7 +103,7 @@ class Cart extends Component {
         } else {
             const myDeleted = [...myCart[0].CartDetails.splice(indexDetail, 1)];
             this.deleteCartDetail(myDeleted[0]);
-            console.log('Lo que según esto borre', myDeleted)
+
             myCart[0].Total = this.calcTotal(myCart);
             if ( myCart[0].Total > 0 ) {
                 this.updateCart(myCart[0]);
@@ -122,14 +123,20 @@ class Cart extends Component {
     handleConfirm = (e) => {
         e.preventDefault();
         let myCart = [...this.state.cart];
-
-        myCart[0].Status = "Confirmed";
-
-        this.updateCart(myCart[0]);
-
-        this.setState({
-            cart: null
-        });
+        if ( myCart[0].DeliveryAddress ) {
+            myCart[0].Status = "Confirmed";
+    
+            this.updateCart(myCart[0]);
+    
+            this.setState({
+                cart: null,
+                message: 'There isn\'t a cart open.'
+            });
+        } else {
+            this.setState({
+                message: 'Please, add a delivery address.'
+            });
+        }
     }
 
     handleDiscard = (e) => {
@@ -138,7 +145,8 @@ class Cart extends Component {
         this.deleteCart(myCart[0]);
 
         this.setState({
-            cart: null
+            cart: null,
+            message: 'There isn\'t a cart open.'
         });
     }
 
@@ -150,12 +158,26 @@ class Cart extends Component {
         });
     }
 
+    handleSave = (e) => {
+        e.preventDefault();
+        let myCart = [...this.state.cart];
+        myCart[0].DeliveryAddress = e.target.delAddressInput.value;
+        this.updateCart(myCart[0]);
+        this.setState({
+            isEditable: false,
+            cart: myCart,
+            message: ""
+        });
+    }
+
 	render() {
         const currentUser = this.state.currentUser;
         const isEditable = this.state.isEditable;
         const currentCart = this.state.cart;
+        const myMessage = this.state.message;
 
         let infoCart = null;
+
 
         if (currentCart) {
             infoCart = currentCart.map((cart) => {
@@ -181,30 +203,41 @@ class Cart extends Component {
                 });
 
                 return(<div key={cart.id} className="cart-content">
-                            <h3>Cart Num: {cart.id}</h3>
+                            <div>
+                                <h3>Cart Order: {cart.id}</h3>
+                                <strong className="cart-message">{myMessage}</strong>
+                            </div>
                             <div className="cart-delivery">
                                 <div className="cart-delivery-address">
                                     <div className="cart-dd-item"><strong>Delivery Address:</strong>{" "}
-                                    <div className="item-address">{ cart.DeliveryAddress}</div></div>
-                                    {isEditable && (
-                                        <div className="cart-dd-item">
-                                            <button class="btn">
-                                                <i class="fa fa-save"></i>{" Save"}
-                                            </button>
-                                        </div> )}
+                                    {!isEditable && (<div className="item-address">{ cart.DeliveryAddress}</div>)}
+                                    {isEditable && (<div>
+                                                    <form id="deliveryAddressForm" onSubmit={(event) => {
+                                                        this.handleSave(event) } } >
+                                                        <textarea type="text" id="delAddressInput" name="delAddressInput" rows="4" cols="100">{cart.DeliveryAddress}</textarea>
+                                                    </form> 
+                                                </div>)}                                    
+                                    {isEditable && ( <div className="cart-dd-item">
+                                                        <button type="submit" form="deliveryAddressForm" class="btn">
+                                                        <i class="fa fa-save"></i>{" Save"}
+                                                    </button>
+                                                </div> )} 
                                     {!isEditable && (
                                         <div className="cart-dd-item">
-                                            <button class="btn">
+                                            <button onClick={(event) => {
+                                                        this.handleEdit(event);
+                                                }}  class="btn">
                                                 <i class="fa fa-edit"></i>{" Edit Address"}
                                             </button>
                                         </div>)}
+                                    </div>
                                 </div>
 
                                 <div className="cart-delivery-dates">
                                     <div className="cart-dd-item"><strong>PurchaseDate:</strong>{" "}
-                                    { cart.PurchaseDate}</div>
+                                    { cart.PurchaseDate.replace(/[A-Za-z]/g, ' ') }</div>
                                     <div className="cart-dd-item"><strong>DeliveryDate:</strong>{" "}
-                                    { cart.DeliveryDate}</div>
+                                    { cart.DeliveryDate ? cart.DeliveryDate.replace(/[A-Za-z]/g, ' ') : null }</div>
                                     <div className="cart-dd-item"><strong>Total:</strong>{" $"}
                                     { cart.Total}</div>
                                     <div className="cart-dd-item"><button  onClick={(event) => {
@@ -222,10 +255,13 @@ class Cart extends Component {
 
         return (
             <div className="cart-container-screen">
-                {!currentUser && (<div className="cart-content">
-                    Not User Logged.
-                </div>)}
                 {infoCart}
+                {!currentUser && (<div className="cart-message">
+                    <h1><strong>Not User Logged.</strong></h1>
+                </div>)}
+                {( currentUser && (!currentCart || currentCart.length <= 0)) && (<div className="cart-message">
+                    <h1><strong>{'There isn\'t a cart open.'}</strong></h1>
+                </div>)}
             </div>
         );
     }

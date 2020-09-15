@@ -3,8 +3,7 @@
 .cart-container-screen {
     display: flex;
     flex-direction: column wrap;
-    align-items: center;
-    margin-top: 200px;
+    margin-top: 15px;
     font-family: arial;
 }
 
@@ -30,6 +29,9 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin: 20px;
     padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .cart-delivery-dates {
@@ -47,6 +49,10 @@
 
 .cart-dd-item {
     margin: 10px;
+}
+
+.cart-message {
+    color: red;
 }
 
 .book-det {
