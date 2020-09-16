@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import AuthService from "./services/auth.service";
 import NewCart from "./services/cart.service";
+import ReactStars from "react-rating-stars-component";
 import "./BookDetails.css";
 import axios from "axios";
-import ReactStars from "react-rating-stars-component";
+
 
 const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
 
@@ -77,7 +78,6 @@ class BookDetails extends Component {
 
 			if ( currentUser ) {
 				axios.get(`${backendUrl}/carts/byuser/${currentUser.id}`).then((response) => {
-					console.log('La información del libro es la siguiente: ', myBook)
 					this.setState({
 						bookDetail: myBook,
 						cart: response.data.carts
@@ -145,7 +145,20 @@ class BookDetails extends Component {
 		}
 	}
 
+	updateRating = (event, bookUpd) => {
+		bookUpd.Rating = event;
+		
+		axios
+		 	.put(`${backendUrl}/books/${bookUpd.id}`, bookUpd)
+		 	.then((response) => {
+				 this.setState({ book: response.data.updBook[0] });
+			 });
+	};
+
 	render() {
+		console.log(this.state.bookDetail);
+		
+
 		return (
 			<div className="bookDetail">
 				<div>{this.state.message}</div>
@@ -169,17 +182,20 @@ class BookDetails extends Component {
 						</h5>
 					</div>
 					<div className="bookDet-rating">
-						<h5>Rating: {this.state.bookDetail.Rating}</h5>
 						<h5>
 							<label>Rating:</label>
 						</h5>
-						<ReactStars
-							value={this.state.bookDetail.Rating}
-							count={5}
-							size={22}
-							activeColor="#ffd700"
-							edit={false}
-						/>
+						{ this.state.bookDetail.hasOwnProperty("Rating") &&
+						(<ReactStars
+								value={this.state.bookDetail.Rating}
+								count={5}
+								onChange={(event) => {
+									this.updateRating(event, this.state.bookDetail);
+								}}
+								size={22}
+								activeColor="#ffd700"
+								edit={true}
+							/>)}
 					</div>
 					<div className="bookDet-extraInfo">
 						<h5>
