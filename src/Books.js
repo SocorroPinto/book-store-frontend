@@ -98,19 +98,22 @@ class Books extends Component {
 		// 		: this.props.location.pathname;
 		const currentUser = this.state.currentUser;
 
-		axios.get(`${backendUrl}${myPath}?limit=${this.state.limit}&offset=${this.state.offset*this.state.activePage}`)
+		//axios.get(`${backendUrl}${myPath}?limit=${this.state.limit}&offset=${this.state.offset*this.state.activePage}`)
+		axios.get(`${backendUrl}${myPath}`)
 			.then((response) => {
 				const myBooks = response.data.myBooks.books.books;
 				if ( currentUser ) {
 					axios.get(`${backendUrl}/carts/byuser/${currentUser.id}`).then((response) => {
 						this.setState({
 							books: myBooks,
-							cart: response.data.carts
+							cart: response.data.carts,
+							displayedBooks: this.getDisplayObjects(myBooks)
 						});
 					});
 				} else {
 					this.setState({
 						books: response.data.myBooks.books.books,
+						displayedBooks: this.getDisplayObjects(myBooks)
 					});					
 				}
 			});
@@ -179,21 +182,8 @@ class Books extends Component {
 			.then((response) => {});
 	};
 
-	handlePageChange(pageNumber) {
-
-		axios.get(`${backendUrl}${myPath}?limit=${this.state.limit}&offset=${this.state.offset}`)
-		  .then((response) => {
-		  	this.setState({
-	 		 books: response.data.myBooks.books.books,
-		 		 activePage: pageNumber,
-		 		 offset: (pageNumber-1)*this.state.limit
-		  	});					
-		});
-	}
-
-	render() {
-
-		const allBooks = this.state.books.map((book, index) => {
+	getDisplayObjects = (pBooks) => {
+		const allBooks = pBooks.slice(this.state.offset, this.state.offset + this.state.limit).map((book, index) => {
 			return (
 				<div className="books" key={book.id}>
 					<div>{this.state.message}</div>
@@ -235,25 +225,44 @@ class Books extends Component {
 				</div>
 			);
 		});
+		return allBooks;
+	}
+
+	handlePageChange(pageNumber) {
+		this.setState({
+	 		displayedBooks: this.getDisplayObjects(this.state.books),
+			activePage: pageNumber,
+			offset: (pageNumber-1)*this.state.limit
+		});		
+
+		// axios.get(`${backendUrl}${myPath}?limit=${this.state.limit}&offset=${this.state.offset}`)
+		//   .then((response) => {
+		//   	this.setState({
+	 	// 	 books: response.data.myBooks.books.books,
+		//  		 activePage: pageNumber,
+		//  		 offset: (pageNumber-1)*this.state.limit
+		//   	});					
+		// });
+	}
+
+	render() {
+
+
 
 		return (
 			<div className="book-container">
 				<div className="book-collection">
-					{allBooks}
+					{/* {allBooks} */}
+					{ this.state.displayedBooks }
 					<div className="book-pagination">
 						<div className="pagination">
 							<Pagination
 								activePage={this.state.activePage}
 								itemsCountPerPage={this.state.limit}
-								totalItemsCount={23}
-								pageRangeDisplayed={Math.ceil(23/this.state.limit)}
+								totalItemsCount={this.state.books.length}
+								pageRangeDisplayed={Math.ceil(this.state.books.length/this.state.limit)}
 								onChange={this.handlePageChange.bind(this)}
 							/>
-							{/* <Pagination
-								totalBooks={this.state.books.length}
-								backendUrl={backendUrl}
-								myPath={myPath}
-							/> */}
 						</div>
 					</div>
 				</div>
