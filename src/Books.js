@@ -8,6 +8,7 @@ import AuthService from "./services/auth.service";
 import NewCart from "./services/cart.service";
 import Pagination from "react-js-pagination";
 import axios from "axios";
+
 // import Pagination from "./Pagination";
 
 
@@ -21,7 +22,7 @@ class Books extends Component {
 			books: [],
 			currentUser: AuthService.getCurrentUser(),
 			cart: null,
-			limit: 80,
+			limit: 6,
 			offset: 0,
 			newRating: 0,
 			activePage: 1,
@@ -97,7 +98,7 @@ class Books extends Component {
 		// 		: this.props.location.pathname;
 		const currentUser = this.state.currentUser;
 
-		axios.get(`${backendUrl}${myPath}?limit=${this.state.limit}&offset=${this.state.offset}`)
+		axios.get(`${backendUrl}${myPath}?limit=${this.state.limit}&offset=${this.state.offset*this.state.activePage}`)
 			.then((response) => {
 				const myBooks = response.data.myBooks.books.books;
 				if ( currentUser ) {
@@ -179,8 +180,15 @@ class Books extends Component {
 	};
 
 	handlePageChange(pageNumber) {
-		console.log(`active page is ${pageNumber}`);
-		this.setState({ activePage: pageNumber });
+
+		axios.get(`${backendUrl}${myPath}?limit=${this.state.limit}&offset=${this.state.offset}`)
+		  .then((response) => {
+		  	this.setState({
+	 		 books: response.data.myBooks.books.books,
+		 		 activePage: pageNumber,
+		 		 offset: (pageNumber-1)*this.state.limit
+		  	});					
+		});
 	}
 
 	render() {
@@ -236,10 +244,10 @@ class Books extends Component {
 						<div className="pagination">
 							<Pagination
 								activePage={this.state.activePage}
-								itemsCountPerPage={6}
-								totalItemsCount={this.state.books.length}
-								pageRangeDisplayed={5}
-								onChange={this.handlePageChange}
+								itemsCountPerPage={this.state.limit}
+								totalItemsCount={23}
+								pageRangeDisplayed={Math.ceil(23/this.state.limit)}
+								onChange={this.handlePageChange.bind(this)}
 							/>
 							{/* <Pagination
 								totalBooks={this.state.books.length}
