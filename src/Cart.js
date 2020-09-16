@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 //import { Link } from "react-router-dom";
 import AuthService from "./services/auth.service";
+import FakePromo from "./FakePromo";
+import FakeAd from "./FakeAd";
 import "./Cart.css";
 import axios from "axios";
 const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
-
-// import FakePromo from "./FakePromo";
-// import FakeAd from "./FakeAd";
 
 
 class Cart extends Component {
@@ -26,9 +25,7 @@ class Cart extends Component {
 
         pCart.forEach((cart) => {
             cart.CartDetails.forEach((detail) => {
-                detail.Books.forEach((book) => {
-                    myTotal += detail.Quantity * book.Cost;
-                });
+                myTotal += detail.Quantity * detail.Book.Cost;
             });
         });  
         return myTotal;   
@@ -37,14 +34,15 @@ class Cart extends Component {
     updateCart = (pCart) => {
 		axios.put(`${backendUrl}/carts/${pCart.id}`, pCart)
 			.then((response) => {
-                console.log(response.data)
+                console.log(response.data);
             });
     }
 
     updateCartDetail = (pCartDet) => {
+
 		axios.put(`${backendUrl}/cartdets/${pCartDet.id}`, pCartDet)
 			.then((response) => {
-                console.log(response.data.cartDetail)
+                console.log(response.data.cartDetail);
             });
     }
 
@@ -58,10 +56,9 @@ class Cart extends Component {
     }
 
     deleteCartDetail = (pCartDet) => {
-
         axios.delete(`${backendUrl}/cartdets/${pCartDet.id}`)
 			.then((response) => {
-                console.log(response.data.message)
+                console.log(response.data.message);
             });
     }
 
@@ -112,8 +109,8 @@ class Cart extends Component {
                 myCart = null;
             }
         }
-        console.log(indexDetail);
-        console.log(myCart)
+        // console.log(indexDetail);
+        // console.log(myCart)
 
         this.setState({
             cart: myCart
@@ -182,15 +179,14 @@ class Cart extends Component {
         if (currentCart) {
             infoCart = currentCart.map((cart) => {
                 const cartDetails = cart.CartDetails.map((detail, dIndex) => {
-                    const bookDet = detail.Books.map((book) => {
-                        return(<div key={book.id} className="book-det">
+                    const bookDet = (<div key={detail.Book.id} className="book-det">
                                     <div className="book-det-item">{dIndex+1}{".-  "}</div>
                                     <img className="book-det-item cartImage" 
-                                         src={`../booksImages/${book.Img}`} 
+                                         src={`../booksImages/${detail.Book.Img}`} 
                                          alt="Boook"></img>
-                                    <div className="book-det-item book-title-cart"><strong>{book.Title}</strong></div>
+                                    <div className="book-det-item book-title-cart"><strong>{detail.Book.Title}</strong></div>
                                     <div className="book-det-item"><strong>{"Qty: "}</strong>{detail.Quantity}</div>
-                                    <div className="book-det-item"><strong>{"Price: $"}</strong>{book.Cost}</div>
+                                    <div className="book-det-item"><strong>{"Price: $"}</strong>{detail.Book.Cost}</div>
                                     <div className="book-det-item"><button onClick={(event) => {
                                         this.handleAddBook(event, dIndex);
                                     }} className="btn"><i className="fa fa-plus"></i></button></div>
@@ -198,7 +194,7 @@ class Cart extends Component {
                                         this.handleDelBook(event, dIndex);
                                     }} className="btn"><i className="fa fa-trash"></i></button></div>
                             </div>);
-                    });
+
                     return (bookDet);
                 });
 
@@ -218,16 +214,16 @@ class Cart extends Component {
                                                     </form> 
                                                 </div>)}                                    
                                     {isEditable && ( <div className="cart-dd-item">
-                                                        <button type="submit" form="deliveryAddressForm" class="btn">
-                                                        <i class="fa fa-save"></i>{" Save"}
+                                                        <button type="submit" form="deliveryAddressForm" className="btn">
+                                                        <i className="fa fa-save"></i>{" Save"}
                                                     </button>
                                                 </div> )} 
                                     {!isEditable && (
                                         <div className="cart-dd-item">
                                             <button onClick={(event) => {
                                                         this.handleEdit(event);
-                                                }}  class="btn">
-                                                <i class="fa fa-edit"></i>{" Edit Address"}
+                                                }}  className="btn">
+                                                <i className="fa fa-edit"></i>{" Edit Address"}
                                             </button>
                                         </div>)}
                                     </div>
@@ -254,14 +250,20 @@ class Cart extends Component {
         }
 
         return (
-            <div className="cart-container-screen">
-                {infoCart}
-                {!currentUser && (<div className="cart-message">
-                    <h1><strong>Not User Logged.</strong></h1>
-                </div>)}
-                {( currentUser && (!currentCart || currentCart.length <= 0)) && (<div className="cart-message">
-                    <h1><strong>{'There isn\'t a cart open.'}</strong></h1>
-                </div>)}
+            <div className="cart-container-above">
+                <div className="cart-container-screen">
+                    {infoCart}
+                    {!currentUser && (<div className="cart-message">
+                        <h1><strong>Not User Logged.</strong></h1>
+                    </div>)}
+                    {( currentUser && (!currentCart || currentCart.length <= 0)) && (<div className="cart-message">
+                        <h1><strong>{'There isn\'t a cart open.'}</strong></h1>
+                    </div>)}
+                </div>
+                <div className="fakeAdvertising">
+					<FakeAd />
+					<FakePromo />
+				</div>
             </div>
         );
     }
