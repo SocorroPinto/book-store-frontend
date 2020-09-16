@@ -260,10 +260,10 @@ class Cart extends Component {
                         <h1><strong>{'There isn\'t a cart open.'}</strong></h1>
                     </div>)}
                 </div>
-                <div className="fakeAdvertising">
+                {( currentUser && currentCart && currentCart.length > 0) && (<div className="fakeAdvertising">
 					<FakeAd />
 					<FakePromo />
-				</div>
+				</div>)}
             </div>
         );
     }
