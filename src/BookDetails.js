@@ -20,6 +20,11 @@ class BookDetails extends Component {
 			});
 		});
 	}
+
+	updateRating = (newRating) => {
+		console.log(newRating);
+	};
+
 	render() {
 		return (
 			<div className="bookDetail">
@@ -46,7 +51,7 @@ class BookDetails extends Component {
 							<label>Rating:</label>
 						</h5>
 						<ReactStars
-							value={this.state.bookDetail.Rating}
+							value={"5"}
 							count={5}
 							size={22}
 							activeColor="#ffd700"
