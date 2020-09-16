@@ -9,7 +9,8 @@ import LogIn from "./LogIn.js";
 import Books from "./Books.js";
 import BookDetails from "./BookDetails.js";
 import Cart from "./Cart.js";
-let searchTxt = "";
+let searchBook = "";
+
 class App extends Component {
 	constructor(props) {
 		super();
@@ -34,23 +35,28 @@ class App extends Component {
 	logOut = () => {
 		AuthService.logout();
 	};
-	searchBook = (e) => {
-		searchTxt = e.target.value;
+	changeSearchTxt = (e) => {
 		//console.log("Search", `${backendUrl}/books/search?tag=${e.target.value}`);
 		// axios
 		// 	.get(`${backendUrl}/books/search?tag=${e.target.value}`)
 		// 	.then((response) => {
 		// 		console.log("after axios ", response.data.myBooks.books.books);
-		this.setState({
-			// books: response.data.myBooks.books.books,
-			searchTxt: e.target.value,
-		});
-		// });
-		console.log("searchBook-->", searchTxt);
+		searchBook = e.target.value;
+		console.log(e.target.value);
+		console.log("searchBook-->", searchBook);
+		if (e.onKeyPress == 13) {
+			this.handleSearchBook(e);
+		}
 	};
-
+	handleSearchBook = (event) => {
+		console.log("searchBook-->", searchBook);
+		this.state = {
+			searchTxt: searchBook,
+		};
+	};
 	render() {
 		const { currentUser } = this.state;
+		console.log(this.state.searchTxt);
 		return (
 			<div className="App">
 				<header>
@@ -100,12 +106,20 @@ class App extends Component {
 						<div className="searchingBooks">
 							<label className="subheader-item">Search:</label>
 							<form
-								onChange={(event) => {
-									this.searchBook(event);
+								onSubmit={(event) => {
+									this.handleSearchBook(event);
 								}}
 							>
-								<input className="inputField" type="text" name="search" />
+								<input
+									className="inputField"
+									type="text"
+									name="search"
+									onKeyPress={(event) => {
+										this.changeSearchTxt(event);
+									}}
+								/>
 							</form>
+
 							<img
 								id="searchImage"
 								alt=""
@@ -123,7 +137,9 @@ class App extends Component {
 						<Route
 							exact
 							path={["/", "/books"]}
-							component={(routerProps) => <Books {...routerProps} />}
+							component={(routerProps) => (
+								<Books {...routerProps} searchBook={this.state.searchTxt} />
+							)}
 						/>
 						<Route
 							exact
@@ -145,7 +161,7 @@ class App extends Component {
 						<Route
 							path="/books/search"
 							component={(routerProps) => (
-								<Books {...routerProps} searchTxt={searchTxt} />
+								<Books {...routerProps} searchTxt={this.state.searchTxt} />
 							)}
 						/>
 						<Route
@@ -183,11 +199,15 @@ class App extends Component {
 						)}
 					</Switch>
 				</main>
-
-				{/* <aside className="asideHomePage"></aside> */}
-				{/* <footer className="footer">
-					<div>footer</div>
-				</footer> */}
+				<footer className="footer">
+					<div>
+						<ul>
+							Contacts:
+							<li>Socorro Pinto </li>
+							<li>Gladys Cruz </li>
+						</ul>
+					</div>
+				</footer>
 			</div>
 		);
 	}

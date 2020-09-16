@@ -5,9 +5,9 @@ import CheckButton from "react-validation/build/button";
 
 import AuthService from "./services/auth.service";
 
-//import "./LogIn.css";
+import "./LogIn.css";
 
-const required = value => {
+const required = (value) => {
 	if (!value) {
 		return (
 			<div className="alert alert-danger" role="alert">
@@ -15,7 +15,7 @@ const required = value => {
 			</div>
 		);
 	}
-}
+};
 
 class LogIn extends Component {
 	constructor(props) {
@@ -28,19 +28,19 @@ class LogIn extends Component {
 			username: "",
 			password: "",
 			loading: false,
-			message: ""
-		}
+			message: "",
+		};
 	}
 
 	onChangeUsername(e) {
 		this.setState({
-			username: e.target.value
+			username: e.target.value,
 		});
 	}
 
 	onChangePassword(e) {
 		this.setState({
-			password: e.target.value
+			password: e.target.value,
 		});
 	}
 
@@ -48,7 +48,7 @@ class LogIn extends Component {
 		e.preventDefault();
 		this.setState({
 			message: "",
-			loading: true
+			loading: true,
 		});
 
 		this.form.validateAll();
@@ -59,21 +59,22 @@ class LogIn extends Component {
 					this.props.history.push("/profile");
 					window.location.reload();
 				},
-				error => {
-					const resMessage = (error.response &&
-										error.response.data &&
-										error.response.data.message) ||
-										error.message ||
-										error.toString();
+				(error) => {
+					const resMessage =
+						(error.response &&
+							error.response.data &&
+							error.response.data.message) ||
+						error.message ||
+						error.toString();
 					this.setState({
 						loading: false,
-						message: resMessage
+						message: resMessage,
 					});
 				}
 			);
 		} else {
 			this.setState({
-				loading: false
+				loading: false,
 			});
 		}
 	}
@@ -82,17 +83,16 @@ class LogIn extends Component {
 		return (
 			<div className="col-md-12">
 				<div className="card card-container">
-					<img 
+					<img
 						src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
 						alt="profile-img"
-						className="profile-img-card" 
-					>
-					</img>
+						className="profile-img-card"
+					></img>
 					<Form
 						onSubmit={this.handleLogin}
-						ref={ c => {
+						ref={(c) => {
 							this.form = c;
-						} }
+						}}
 					>
 						<div className="form-group">
 							<label htmlFor="username">Username</label>
@@ -123,8 +123,8 @@ class LogIn extends Component {
 								disabled={this.state.loading}
 							>
 								{this.state.loading && (
-										<span className="spinner-border" spinner-border-sm></span>
-									)}
+									<span className="spinner-border" spinner-border-sm></span>
+								)}
 								<span>Login</span>
 							</button>
 						</div>
@@ -139,7 +139,7 @@ class LogIn extends Component {
 
 						<CheckButton
 							style={{ display: "none" }}
-							ref={ c => {
+							ref={(c) => {
 								this.checkBtn = c;
 							}}
 						/>

@@ -131,7 +131,7 @@
 .mainHomePage {
 	/* border: 5px solid lime; */
 	display: flex;
-	height: 400px;
+	flex-flow: column wrap;
 }
 
 .asideHomePage {
@@ -139,8 +139,15 @@
 	height: 400px;
 }
 .footer {
-	display: flex;
-	height: 90px;
+	display: grid;
+	position: relative;
+
+	background-color: #8d9db6;
+	font-family: "Croissant One";
+	color: #bccad6;
+	clear: both;
+	height: 100px;
+	margin-top: -1px;
 }
 @keyframes App-logo-spin {
 	from {
