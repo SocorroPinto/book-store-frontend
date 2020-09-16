@@ -209,13 +209,17 @@ class BookDetails extends Component {
 						</h5>
 					</div>
 					<div className="bookDet-summary">
+						<div>
 						<h5>
 							<label>Description:</label>
-							{this.state.bookDetail.Descriiption}
+							{this.state.bookDetail.Description}
 						</h5>
+						</div>
+						<div>
 						<h5>
 							<label>Summary:</label>: {this.state.bookDetail.Summary}
 						</h5>
+						</div>
 					</div>
 				</div>
 			</div>
