@@ -246,9 +246,6 @@ class Books extends Component {
 	}
 
 	render() {
-
-
-
 		return (
 			<div className="book-container">
 				<div className="book-collection">

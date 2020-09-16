@@ -53,7 +53,6 @@ class BookDetails extends Component {
     }
 
 	updateCart = (pCart) => {
-
 		axios.put(`${backendUrl}/carts/${pCart.id}`, pCart)
 			.then((response) => {
                 console.log(response.data);
@@ -70,7 +69,6 @@ class BookDetails extends Component {
 
 
 	componentDidMount() {
-		console.log("this.props.match.url", this.props.match.url);
 		const currentUser = this.state.currentUser;
 
 		axios.get(`${backendUrl}${this.props.match.url}`).then((response) => {
@@ -156,9 +154,6 @@ class BookDetails extends Component {
 	};
 
 	render() {
-		console.log(this.state.bookDetail);
-		
-
 		return (
 			<div className="bookDetail">
 				<div>{this.state.message}</div>
