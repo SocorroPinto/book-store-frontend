@@ -18,6 +18,7 @@
 
 .fakeAdvertising {
 	width: 22%;
+	height: 1700px;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;
@@ -52,8 +53,6 @@
 .book-price {
 	font-size: 22px;
 }
-
-
 
 .books .book-info {
 	display: flex;

@@ -1,6 +1,8 @@
-
-
+.col-md-12 {
+	height: 800px;
+	margin-bottom: 300px;
+}
 .profile-img-card {
 	border-radius: 50%;
 	size: 25px;
-} 
+}

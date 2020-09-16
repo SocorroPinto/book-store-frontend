@@ -1,97 +1,96 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
 .cart-container-above {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: flex-start;
-    margin-top: 30px;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: flex-start;
+	margin-top: 30px;
 }
-
-
 
 .fakeAdvertising {
 	width: 22%;
 	display: flex;
 	flex-wrap: wrap;
-    flex-direction: column;
-    align-content: space-around;
+	flex-direction: column;
+	align-content: space-around;
 }
 
 .cart-container-screen {
-    display: flex;
-    flex-direction: column wrap;
-    margin-top: 15px;
-    font-family: arial;
-    width: 75%;
+	display: flex;
+	flex-direction: column wrap;
+	margin-top: 15px;
+	font-family: arial;
+	width: 75%;
 }
 
 .cartImage {
-    width: 50px;
-    height: 70px;
+	width: 50px;
+	height: 70px;
 }
 
 .btn {
-    background-color: DodgerBlue;
-    border: none;
-    color: white;
-    padding: 12px 16px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .btn:hover {
-    background-color: RoyalBlue;
-  }
+	background-color: DodgerBlue;
+	border: none;
+	color: white;
+	padding: 12px 16px;
+	font-size: 16px;
+	cursor: pointer;
+}
 
-.cart-delivery{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin: 20px;
-    padding: 20px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.btn:hover {
+	background-color: RoyalBlue;
+}
+
+.cart-delivery {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	margin: 20px;
+	padding: 20px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 .cart-delivery-dates {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .cart-delivery-address {
-    margin: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+	margin: 10px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .cart-dd-item {
-    margin: 10px;
+	margin: 10px;
 }
 
 .cart-message {
-    color: red;
+	color: red;
+	margin-bottom: 600px;
 }
 
 .book-det {
-    display: flex;
-    flex-direction: row wrap;
-    align-items: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin: 10px;
+	display: flex;
+	flex-direction: row wrap;
+	align-items: center;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	margin: 10px;
 }
 
 .book-det-item {
-    margin: 10px;
+	margin: 10px;
 }
 
 .item-address {
-    width: 550px;
-    text-align: left;    
+	width: 550px;
+	text-align: left;
 }
 
 .book-title-cart {
-    width: 550px;
-    text-align: justify;
-} 
+	width: 550px;
+	text-align: justify;
+}
