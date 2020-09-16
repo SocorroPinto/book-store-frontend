@@ -11,7 +11,7 @@ import axios from "axios";
 
 // import Pagination from "./Pagination";
 
-const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
+const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:3000/api";
 let myPath = "";
 
 class Books extends Component {
@@ -267,7 +267,7 @@ class Books extends Component {
 					<FakeAd />
 					<FakePromo />
 					<FakeAd />
-					<FakePromo />
+					{/* <FakePromo /> */}
 				</div>
 			</div>
 		);
