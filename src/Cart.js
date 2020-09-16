@@ -5,7 +5,7 @@ import FakePromo from "./FakePromo";
 import FakeAd from "./FakeAd";
 import "./Cart.css";
 import axios from "axios";
-const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:3000/api";
+const backendUrl = process.env.BACKEND_URL || "http://localhost:3000/api";
 
 
 class Cart extends Component {
