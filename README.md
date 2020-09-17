@@ -6,8 +6,19 @@
 
 Owl Book store is an app to shop books online, you will be able to filter books using book name or author on the main Page, you can filter by all books, most selled or most rated books. Authentification is required in order to buy a book, you will be able to include multiple books to a cart and there is an option to show cart history.
 
+### User Stories
+1.- As a User I want to have authentification functionality available.
+2.- As a User I want to have multiples filters on home page so I can find out easily books by most rated, most selles, all books or filtering by specific book based on an author or title.
+3.- As a User I want to be able to see a book detail to check more information for a book such as Summary, Description, author.
+4.- As a User I want to update rating from home page and book detal page.
+5.- As a User I need to be able to add multiple books to a cart.
+6.- As a User I want to be able to update delivery address for an open cart so  can confirm the cart.
+7.- As a User I need to display cart history so I can see carts confirmed.
+8.- As a User I need to be able to confirm open carts.
+9.- As a User I need pagination functionality working to display books.
 
 ### Wireframes
+- [Wireframes](https://github.com/SocorroPinto/book-store-frontend/tree/master/planning)
 
 ### Login
 It is required to login to the App in order to be able to buy a book, show a current cart open and Cart history.
@@ -71,7 +82,7 @@ Once we add the delivery address we should click on Save button.
   - testing-library/react: 9.5.0
   - testing-library/user-event: 7.2.1
   - axios: 0.20.0
-  - bootstrap": 4.5.2
+  - bootstrap: 4.5.2
   - react: 16.13.1
   - react-dom:16.13.1
   - react-js-pagination: 3.0.3
