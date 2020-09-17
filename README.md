@@ -31,6 +31,12 @@ From Home Page you can be able to search a book filtering by author or title. Yo
 
 <img src="https://github.com/SocorroPinto/book-store-frontend/blob/master/public/img/HomePageSearchBook.png"  width="900" height="400" />
 
+### Book Detail 
+In this page application will display all information related with a specific book,in home page if a user click on a specific book (either image or title book) the application redirect to a book detail page. From this page we have raiting update functionality and add book to a cart.
+
+<img src="https://github.com/SocorroPinto/book-store-frontend/blob/master/public/img/BookDetail.png"  width="900" height="400" />
+
+
 ### Cart 
 A cart is created when you click add a book from the book detail page or home page. If a user has already an open cart then the application will update the detail of the cart to include more details.
 Application validates if we already have a book created on the cart detail, if so then application will increase quantity of the specific book otherwise application will create a new detail for the cart.
@@ -58,18 +64,21 @@ Once we add the delivery address we should click on Save button.
 
 ## Dependencies
 
-    - bcryptjs: 2.4.3
-    - cookie-parser: 1.4.5
-    - cors: 2.8.5
-    - dotenv: 8.2.0
-    - ej:3.1.3
-    - express: 4.17.1
-    - http-errors: 1.8.0
-    - jsonwebtoken: 8.5.1
-    - method-override: 3.0.0
-    - pg: 8.3.0
-    - sequelize: 6.3.3
-    - sequelize-cli: 6.2.0
+  - testing-library/jest-dom: 4.2.4
+  - testing-library/react: 9.5.0
+  - testing-library/user-event: 7.2.1
+  - axios": 0.20.0
+  - bootstrap": 4.5.2
+  - react": 16.13.1
+  - react-dom:16.13.1
+  - react-js-pagination: "^3.0.3
+  - react-rating-stars-component: 2.2.0
+  - react-router: 5.2.0
+  - react-router-dom: 5.2.0
+  - react-scripts: 3.4.3
+  - react-validation: 3.0.7
+  - reactjs-popup: 2.0.3
+  - validato: 13.1.1
 
 ## Project Links
 
