@@ -6,10 +6,40 @@
 
 Owl Book store is an app to shop books online, you will be able to filter books using book name or author on the main Page, you can filter by all books, most selled or most rated books. Authentification is required in order to buy a book, you will be able to include multiple books to a cart and there is an option to show cart history.
 
+### Login
+
+<img src="https://github.com/SocorroPinto/book-store-frontend/blob/master/public/img/LogIn.png"  width="900" height="400" />
+
+
+### Profile
+
+<img src="https://github.com/SocorroPinto/book-store-frontend/blob/master/public/img/Profile.png"  width="900" height="400" />
+
 ### Home Page
 
-<img src="https://github.com/SocorroPinto/book-store-frontend/blob/master/public/img/OwlBookS.png"  width="70" height="70" />
+<img src="https://github.com/SocorroPinto/book-store-frontend/blob/master/public/img/HomePage.png"  width="900" height="400" />
 
+### Home Page (most rated)
+
+<img src="https://github.com/SocorroPinto/book-store-frontend/blob/master/public/img/HomePageMostRated.png"  width="900" height="400" />
+
+### Home Page (search book)
+
+<img src="https://github.com/SocorroPinto/book-store-frontend/blob/master/public/img/HomePageSearchBook.png"  width="900" height="400" />
+
+### Cart 
+
+<img src="https://github.com/SocorroPinto/book-store-frontend/blob/master/public/img/Cart.png"  width="900" height="400" />
+
+### Cart (Delivery Address validation) 
+
+<img src="https://github.com/SocorroPinto/book-store-frontend/blob/master/public/img/Cart_AddDeliveryAddress.png"  width="900" height="400" />
+
+### Cart (Add Delivery Address) 
+
+<img src="https://github.com/SocorroPinto/book-store-frontend/blob/master/public/img/CartAdress.png"  width="900" height="400" />
+
+CartAdress
 ## Technologies used
 
 - HTML
