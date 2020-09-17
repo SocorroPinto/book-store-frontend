@@ -268,7 +268,7 @@ class Books extends Component {
 					<FakeAd />
 					<FakePromo />
 					<FakeAd />
-					<FakePromo />
+					{/* <FakePromo /> */}
 				</div>
 			</div>
 		);
