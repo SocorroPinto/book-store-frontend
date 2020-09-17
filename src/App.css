@@ -4,14 +4,6 @@
 	display: flex;
 	flex-flow: column;
 }
-header {
-	z-index: 10;
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-}
 .App-header {
 	background-color: #8d9db6;
 	min-height: 150px;
@@ -24,17 +16,14 @@ header {
 	font-size: calc(10px + 2vmin);
 	color: #bccad6;
 }
-
 #historyIcon {
 	width: 40px;
 	height: 35px;
 }
-
 #bookStoreimg {
 	width: 100px;
 	height: 100px;
 }
-
 .App-title {
 	display: flex;
 	height: 90px;
@@ -44,7 +33,6 @@ header {
 	font-size: 30px;
 	font-weight: bold;
 }
-
 .App-account {
 	display: flex;
 	height: 90px;
@@ -56,12 +44,17 @@ header {
 	top: 10px;
 	right: 10px;
 }
-
 .account-item {
 	margin: 10px;
 	font-family: "Croissant One";
 	color: #bccad6;
 }
+/* #menuIcons {
+    display: flex;
+    width: 20%;
+    height: 200px;
+    align-items: center;
+} */
 #homePage {
 	display: flex;
 	font-size: 20px;
@@ -77,14 +70,12 @@ header {
 	border-radius: 70px/70px;
 	border-style: unset;
 }
-
 .App-subheader {
 	background-color: #333;
 	overflow: hidden;
 	display: flex;
 	flex-direction: row;
 }
-
 .App-subheader a {
 	float: left;
 	color: #f2f2f2;
@@ -95,17 +86,14 @@ header {
 	font-weight: bold;
 	font-family: "Croissant One";
 }
-
 .App-subheader a:hover {
 	background-color: #ddd;
 	color: black;
 }
-
 .searchingBooks {
 	display: flex;
 	flex-direction: row;
 }
-
 .subheader-item {
 	float: left;
 	color: #f2f2f2;
@@ -116,7 +104,6 @@ header {
 	font-weight: bold;
 	font-family: "Croissant One";
 }
-
 .inputField {
 	width: 500px;
 	height: 30px;
@@ -124,13 +111,11 @@ header {
 	font-size: 20px;
 	margin: 6px;
 }
-
 .button {
 	display: flex;
 	width: 60px;
 	height: 20px;
 }
-
 #searchImage {
 	padding: 10px;
 }
@@ -138,12 +123,7 @@ header {
 	/* border: 5px solid lime; */
 	display: flex;
 	flex-flow: column wrap;
-	padding-top: 180px;
-	margin: 50px;
-	top: 400px;
-	left: 50px;
 }
-
 .asideHomePage {
 	display: flex;
 	height: 400px;
