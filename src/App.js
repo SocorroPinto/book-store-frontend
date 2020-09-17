@@ -9,6 +9,7 @@ import LogIn from "./LogIn.js";
 import Books from "./Books.js";
 import BookDetails from "./BookDetails.js";
 import Cart from "./Cart.js";
+import CartHistory from "./CartHistory.js";
 let searchBook = "";
 
 class App extends Component {
@@ -72,7 +73,7 @@ class App extends Component {
 						<Link className="account-item" to="/auth/signup">
 							Sign Up
 						</Link>
-						{currentUser && (
+						{currentUser  && (
 							<Link className="account-item" to="/profile">
 								Profile
 							</Link>
@@ -99,6 +100,9 @@ class App extends Component {
 								className="iconHomePage"
 								src="https://img.pngio.com/digicollect-cart-icon-png-download-submit-order-icon-cart-icon-png-840_880.png"
 							/>
+						</Link>
+						<Link to="/carthistory" id="Cart">
+							<img id="historyIcon" alt="" src="../img/historyIcon.png" />
 						</Link>
 						<Link to="/">All books</Link>
 						<Link to="/books/mostselled">Most Selled</Link>
@@ -145,6 +149,11 @@ class App extends Component {
 							exact
 							path="/cart"
 							component={(routerProps) => <Cart {...routerProps} />}
+						/>
+						<Route
+							exact
+							path="/carthistory"
+							component={(routerProps) => <CartHistory {...routerProps} />}
 						/>
 						<Route
 							path="/books/mostrated"
