@@ -30,11 +30,10 @@
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 	max-width: 320px;
 	max-height: 600px;
+	/* margin: auto; */
 	margin: 10px;
 	text-align: center;
 	font-family: arial;
-	margin: 0;
-	padding: 10px;
 }
 
 .book-pagination {
@@ -59,10 +58,6 @@
 	display: flex;
 	flex-flow: column wrap;
 	padding: 15px;
-}
-
-.book-rating {
-	white-space: normal;
 }
 
 .books .book-title {
