@@ -73,7 +73,7 @@ class App extends Component {
 						<Link className="account-item" to="/auth/signup">
 							Sign Up
 						</Link>
-						{currentUser  && (
+						{currentUser && (
 							<Link className="account-item" to="/profile">
 								Profile
 							</Link>
@@ -130,7 +130,7 @@ class App extends Component {
 								src="https://freeiconshop.com/wp-content/uploads/edd/search-var-flat.png"
 								className="iconHomePage"
 								onClick={(event) => {
-									this.searchBook(event);
+									this.handleSearchBook(event);
 								}}
 							/>
 						</div>

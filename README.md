@@ -1,4 +1,4 @@
-# **Owl Book Store** <img src="https://github.com/SocorroPinto/book-store-frontend/blob/master/public/img/OwlBookS.png"  width="70" height="70" />\*\*\*
+# **Owl Book Store (FrontEnd Application)** <img src="https://github.com/SocorroPinto/book-store-frontend/blob/master/public/img/OwlBookS.png"  width="70" height="70" />\*\*\*
 
 # **Developers:** Socorro Pinto and Gladys Cruz
 
