@@ -1,68 +1,38 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# **Owl Book Store** <img src="https://github.com/SocorroPinto/book-store-frontend/blob/master/public/img/OwlBookS.png"  width="70" height="70" />\*\*\*
 
-## Available Scripts
+# **Developers:** Socorro Pinto and Gladys Cruz
 
-In the project directory, you can run:
+## Application Description
 
-### `npm start`
+Owl Book store is an app to shop books online, you will be able to filter books using book name or author on the main Page, you can filter by all books, most selled or most rated books. Authentification is required in order to buy a book, you will be able to include multiple books to a cart.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies used
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- HTML
+- CSS
+- Javascript
+- React
+- Express
+- DB: Postgres
 
-### `npm test`
+## Dependencies
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    * bcryptjs: 2.4.3
+    * cookie-parser: 1.4.5
+    * cors: 2.8.5
+    * dotenv: 8.2.0
+    * ej:3.1.3
+    * express: 4.17.1
+    * http-errors: 1.8.0
+    * jsonwebtoken: 8.5.1
+    * method-override: 3.0.0
+    * pg: 8.3.0
+    * sequelize: 6.3.3
+    * sequelize-cli: 6.2.0
 
-### `npm run build`
+## Project Links
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [github repo Backend](https://github.com/SocorroPinto/book-store-backend)
+- [App in development mode](http://localhost:3001/)
+- [Socorro's Deployed app on Heroku](https://owl-books-online.herokuapp.com/)
+- [Gladys' Deployed app on Heroku](https://owlbook-store.herokuapp.com/)
